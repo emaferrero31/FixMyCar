@@ -724,28 +724,6 @@ body.dashboard {
     background-color: #d5dbdb;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .vehicles-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-    
-    .vehicles-header .btn-primary {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .vehicle-actions {
-        flex-direction: column;
-    }
-    
-    .btn-edit, .btn-delete {
-        width: 100%;
-    }
-}
-
 /* Animations */
 @keyframes fadeIn {
     from { opacity: 0; }
