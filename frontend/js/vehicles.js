@@ -236,9 +236,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Renderizar los vehículos al cargar la página
     renderVehicles();
 
-    // Menú móvil
-    const menuToggle = document.getElementById('menuToggle');
-    const sidebar = document.getElementById('sidebar');
 
     // Alternar menú en pantallas pequeñas
     if (menuToggle && sidebar) {

@@ -126,21 +126,18 @@ a {
     width: 100%;
 }
 
-.menu-toggle {
-    display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
+/* Estilos para menú de escritorio */
 
 /* Hero Section */
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1494905998402-395d579af36f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
     height: 100vh;
+    min-height: 800px;
     display: flex;
     align-items: center;
     text-align: center;
     color: var(--white);
-    padding-top: 80px;
+    padding-top: 0;
 }
 
 .hero-content {

@@ -1,24 +1,5 @@
-// Toggle del menú móvil
+// Inicialización de la página
 document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
-    }
-
-    // Cerrar menú al hacer clic en un enlace
-    const navItems = document.querySelectorAll('.nav-links a');
-    navItems.forEach(item => {
-        item.addEventListener('click', function() {
-            if (window.innerWidth <= 992) {
-                navLinks.style.display = 'none';
-            }
-        });
-    });
-
     // Manejar el envío del formulario de búsqueda
     const searchForm = document.querySelector('.search-container');
     if (searchForm) {
