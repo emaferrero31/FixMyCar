@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Stock - FixMyCar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/workshop-dashboard-styles.css">
+    <link rel="stylesheet" href="css/workshop-inventory-styles.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dashboard">
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="dashboard-container">
+        <!----------------------------- BARRA LATERAL ------------------------------->12
+        <aside class="sidebar" id="sidebar">
+            <div class="logo-container">
+                <i class="fas fa-car-side"></i>
+                <h1>Taller</h1>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="workshop-dashboard.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="workshop-appointments.html" class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Gestión de Turnos</span>
+                </a>
+                <a href="workshop-inventory.html" class="nav-item active">
+                    <i class="fas fa-boxes"></i>
+                    <span>Control de Stock</span>
+                </a>
+                <a href="workshop-edit-profile.html" class="nav-item">
+                    <i class="fas fa-user-edit"></i>
+                    <span>Editar Perfil</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Cerrar Sesión</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-------------------------------------- Contenido principal -------------------------------->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="page-title">
+                    <h1>Gestión de Inventario</h1>
+                    <p>Administra el stock de repuestos y suministros</p>
+                </div>
+                <div class="user-menu">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="https://png.pngtree.com/template/20200503/ourmid/pngtree-car-repair-shop-logo-image_369113.jpg" alt="Usuario" class="avatar">
+                        <span>Taller Ejemplo</span>
+                    </div>
+                </div>
+            </header>
+
+            <!------------------------------------------ filtros ---------------------------->
+            <div class="filters-container">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-inventory" placeholder="Buscar por nombre, código o categoría...">
+                </div>
+                
+                <div class="filters-row">
+                    <div class="filter-group">
+                        <label for="category-filter">Categoría:</label>
+                        <select id="category-filter" class="filter-select">
+                            <option value="all">Todas las categorías</option>
+                            <option value="motor">Motor</option>
+                            <option value="frenos">Frenos</option>
+                            <option value="suspension">Suspensión</option>
+                            <option value="electrico">Eléctrico</option>
+                            <option value="lubricantes">Lubricantes</option>
+                            <option value="filtros">Filtros</option>
+                            <option value="herramientas">Herramientas</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="stock-filter">Estado de stock:</label>
+                        <select id="stock-filter" class="filter-select">
+                            <option value="all">Todo el stock</option>
+                            <option value="low">Stock bajo</option>
+                            <option value="critical">Stock crítico</option>
+                            <option value="out">Sin stock</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn btn-primary" id="add-item">
+                        <i class="fas fa-plus"></i> Nuevo Item
+                    </button>
+                </div>
+            </div>
+
+            <!--------------------------Tabla de inventario -------------------------->
+            <div class="inventory-container">
+                <div class="inventory-header">
+                    <div class="inventory-stats"></div>
+                    
+                    <div class="inventory-actions">
+                        <button class="btn btn-icon" id="export-inventory" title="Exportar">
+                            <i class="fas fa-file-export"></i>
+                        </button>
+                        <button class="btn btn-icon" id="print-inventory" title="Imprimir">
+                            <i class="fas fa-print"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="inventory-table">
+                        <thead>
+                            <tr>
+                                <th class="checkbox-cell">
+                                    <input type="checkbox" id="select-all">
+                                </th>
+                                <th class="item-col">Producto</th>
+                                <th class="category-col">Categoría</th>
+                                <th class="stock-col">Stock</th>
+                                <th class="price-col">Precio</th>
+                                <th class="status-col">Estado</th>
+                                <th class="actions-col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!----------------------------------- Fila tablass-------------------------------------->
+                            <tr class="inventory-item" data-id="2" data-stock="3" data-category="frenos">
+                                <td class="checkbox-cell">
+                                    <input type="checkbox" class="item-checkbox">
+                                </td>
+                                <td class="item-col">
+                                    <div class="item-info">
+                                        <div class="item-avatar">
+                                            <i class="fas fa-brake-system"></i>
+                                        </div>
+                                        <div class="item-details">
+                                            <h4></h4>
+                                            <span class="item-sku"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="category-col">
+                                    <span class="badge category"></span>
+                                </td>
+                                <td class="stock-col">
+                                    <div class="stock-info">
+                                        <div class="stock-bar"></div>
+                                </td>
+                                <td class="price-col"></td>
+                                <td class="status-col">
+                                    <span class="badge warning"></span>
+                                </td>
+                                <td class="actions-col">
+                                    <button class="btn-icon btn-edit" title="Editar">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" title="Eliminar">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+
+            
+            <!--------------------------------- Barra de acciones flotante --------------------------->
+            <div class="floating-actions" id="bulkActions" style="display: none;">
+                <div class="selected-count">
+                    <span id="selectedItemsCount">0</span> elementos seleccionados
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-icon" id="export-selected">
+                        <i class="fas fa-file-export"></i> Exportar
+                    </button>
+                    <button class="btn btn-icon btn-danger" id="delete-selected">
+                        <i class="fas fa-trash"></i> Eliminar
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-----------------------agregar/editar producto ----------------------------->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Nuevo Producto</h3>
+                <button class="btn-icon close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="product-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-name">Nombre del Producto *</label>
+                            <input type="text" id="product-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-sku">Código SKU *</label>
+                            <input type="text" id="product-sku" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-category">Categoría *</label>
+                            <select id="product-category" required>
+                                <option value="">Seleccionar categoría</option>
+                                <option value="motor">Motor</option>
+                                <option value="frenos">Frenos</option>
+                                <option value="suspension">Suspensión</option>
+                                <option value="electrico">Eléctrico</option>
+                                <option value="lubricantes">Lubricantes</option>
+                                <option value="filtros">Filtros</option>
+                                <option value="herramientas">Herramientas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-supplier">Proveedor</label>
+                            <input type="text" id="product-supplier">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-stock">Stock actual *</label>
+                            <input type="number" id="product-stock" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-min-stock">Stock mínimo *</label>
+                            <input type="number" id="product-min-stock" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-max-stock">Stock máximo</label>
+                            <input type="number" id="product-max-stock" min="0">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-price">Precio de compra</label>
+                            <div class="input-with-icon">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="product-price" min="0" step="0.01">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-sale-price">Precio de venta *</label>
+                            <div class="input-with-icon">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="product-sale-price" min="0" step="0.01" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-description">Descripción</label>
+                        <textarea id="product-description" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary close-modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar Producto</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/workshop-inventory.js"></script>
+</body>
+</html>

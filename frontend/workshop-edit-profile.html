@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil - Taller Mecánico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/workshop-dashboard-styles.css">
+    <link rel="stylesheet" href="css/workshop-edit-profile-styles.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dashboard">
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="dashboard-container">
+        <!----------------------------- BARRA LATERAL ------------------------------->
+        <aside class="sidebar" id="sidebar">
+            <div class="logo-container">
+                <i class="fas fa-car-side"></i>
+                <h1>Taller</h1>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="workshop-dashboard.html" class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="workshop-appointments.html" class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Gestión de Turnos</span>
+                </a>
+                <a href="workshop-inventory.html" class="nav-item">
+                    <i class="fas fa-boxes"></i>
+                    <span>Control de Stock</span>
+                </a>
+                <a href="workshop-edit-profile.html" class="nav-item">
+                    <i class="fas fa-user-edit"></i>
+                    <span>Editar Perfil</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Cerrar Sesión</span>
+                </a>
+            </nav>
+        </aside>
+        
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="page-title">
+                    <h1>Editar Perfil del Taller</h1>
+                    <p>Actualiza la información de tu taller mecánico</p>
+                </div>
+                <div class="user-actions">
+                    <button class="btn btn-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </header>
+            
+            <div class="edit-profile-container">
+                <!-- Sección de foto de portada y logo -->
+                <div class="profile-header">
+                    <div class="cover-photo">
+                        <img src="" alt="Portada del taller" id="coverPreview">
+                        <div class="cover-actions">
+                            <button class="btn btn-outline" id="changeCoverBtn">
+                                <i class="fas fa-camera"></i> Cambiar portada
+                            </button>
+                            <input type="file" id="coverUpload" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+                    
+                    <div class="profile-avatar">
+                        <div class="avatar-container">
+                            <img src="" alt="Logo del taller" id="avatarPreview">
+                            <button class="change-avatar-btn" id="changeAvatarBtn">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Formulario de edición -->
+                <form id="editProfileForm" class="edit-form">
+                    <div class="form-section">
+                        <h2>Información Básica</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="workshopName">Nombre del Taller</label>
+                                <input type="text" id="workshopName" class="form-control" value="" placeholder="Nombre del taller" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="workshopEmail">Correo Electrónico</label>
+                                <input type="email" id="workshopEmail" class="form-control" value="" placeholder="correo@ejemplo.com" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="workshopPhone">Teléfono</label>
+                                <input type="tel" id="workshopPhone" class="form-control" value="" placeholder="+54 11 1234-5678" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="workshopWebsite">Sitio Web (opcional)</label>
+                                <input type="url" id="workshopWebsite" class="form-control" placeholder="https://www.ejemplo.com">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="workshopAddress">Dirección</label>
+                            <input type="text" id="workshopAddress" class="form-control" value="" placeholder="Dirección del taller" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="googleMapsLink">Enlace de Google Maps</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                <input type="url" id="googleMapsLink" class="form-control" placeholder="https://goo.gl/maps/...">
+                            </div>
+                            <small class="form-text text-muted">Pega el enlace de Google Maps de tu taller</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="workshopDescription">Descripción del Taller</label>
+                            <textarea id="workshopDescription" class="form-control" rows="4" required placeholder="Descripción de los servicios y especialidades del taller"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h2>Contacto y Redes Sociales</h2>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="whatsappNumber">WhatsApp</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fab fa-whatsapp"></i></span>
+                                    <input type="tel" id="whatsappNumber" class="form-control" placeholder="+5491112345678">
+                                </div>
+                                <small class="form-text text-muted">Incluí el código de país y área sin espacios (ej: +5491112345678)</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="facebookUrl">Facebook</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fab fa-facebook-f"></i></span>
+                                    <input type="url" id="facebookUrl" class="form-control" placeholder="https://facebook.com/tu-pagina">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="instagramUrl">Instagram</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fab fa-instagram"></i></span>
+                                    <input type="text" id="instagramUrl" class="form-control" placeholder="@tucuenta">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="twitterUrl">Twitter</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fab fa-twitter"></i></span>
+                                    <input type="text" id="twitterUrl" class="form-control" placeholder="@tucuenta">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="section-header">
+                            <h2>Horario de Atención</h2>
+                            <button type="button" class="btn btn-text" id="addScheduleBtn">
+                                <i class="fas fa-plus"></i> Agregar horario
+                            </button>
+                        </div>
+                        
+                        <div class="schedule-container" id="scheduleContainer">
+                            <!-- Horarios se agregarán dinámicamente -->
+                            <!-- Los horarios se agregarán dinámicamente -->
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h2>Servicios Ofrecidos</h2>
+                        <div class="services-grid" id="servicesContainer">
+                            <!-- Servicios se agregarán dinámicamente -->
+                            <!-- Los servicios se agregarán dinámicamente -->
+                            
+                            <div class="add-service-card" id="addServiceBtn">
+                                <i class="fas fa-plus"></i>
+                                <span>Agregar servicio</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h2>Galería de Fotos</h2>
+                        <div class="gallery-container" id="galleryContainer">
+                            <!-- Las imágenes de la galería se agregarán dinámicamente -->
+                            
+                            <div class="gallery-upload" id="uploadImageBtn">
+                                <i class="fas fa-plus"></i>
+                                <span>Agregar imagen</span>
+                                <input type="file" id="imageUpload" accept="image/*" multiple style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Guardar Cambios
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal para agregar servicio -->
+    <div class="modal" id="addServiceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Agregar Servicio</h3>
+                <button type="button" class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="serviceName">Nombre del Servicio</label>
+                    <input type="text" id="serviceName" class="form-control" placeholder="Ej: Cambio de Aceite">
+                </div>
+                <div class="form-group">
+                    <label for="serviceIcon">Ícono (opcional)</label>
+                    <div class="icon-selector">
+                        <div class="icon-option active" data-icon="fa-tools">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-oil-can">
+                            <i class="fas fa-oil-can"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-car">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-tire">
+                            <i class="fas fa-tire"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-bolt">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline close-modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="confirmAddService">Agregar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/workshop-edit-profile.js"></script>
+</body>
+</html>

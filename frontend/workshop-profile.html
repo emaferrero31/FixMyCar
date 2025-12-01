@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Taller - FixMyCar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/workshop-profile-styles.css">
+</head>
+<body class="dashboard">
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="dashboard-container">
+        <!----------------------------- BARRA LATERAL ------------------------------->
+        <aside class="sidebar" id="sidebar">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h1>FixMyCar</h1>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="vehicles.html" class="nav-item">
+                    <i class="fas fa-car"></i>
+                    <span>Mis Vehículos</span>
+                </a>
+                <a href="search-workshops.html" class="nav-item active">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Buscar Taller</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Configuración</span>
+                </a>
+            </nav>
+
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <span class="user-name">Usuario Ejemplo</span>
+                    <a href="login.html" class="logout-link">Cerrar sesión</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar taller...">
+                </div>
+                <div class="user-actions">
+                    <button class="btn-notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <div class="user-avatar-small">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Contenido del perfil del taller -->
+            <div class="workshop-profile-container">
+                <!-- Sección de información principal -->
+                <div class="workshop-header">
+                    <div class="workshop-cover">
+                        <img src="" alt="Portada del taller">
+                        <div class="workshop-avatar">
+                            <img src=alt="Logo del taller">
+                        </div>
+                    </div>
+                    <div class="workshop-info">
+                        <div class="workshop-title">
+                            <h1>name</h1>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>raiting</span>
+                                <span class="reviews">reviews</span>
+                            </div>
+                        </div>
+                        <div class="workshop-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <a href="google maps link" target="_blank" class="contact-link">
+                                    <span>address</span>
+                                </a>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="phone number" class="contact-link">
+                                    <span>number</span>
+                                </a>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>open hours</span>
+                            </div>
+
+                        </div>
+                        <div class="workshop-actions">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-calendar-alt"></i> Pedir cita
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="fas fa-directions"></i> Cómo llegar
+                            </button>
+                            <button class="btn btn-icon">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="btn btn-icon">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                            <a href="https://www.instagram.com/tallermecanicoejemplo" target="_blank" class="social-button instagram" title="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://wa.me/59899123456" target="_blank" class="social-button whatsapp" title="Enviar mensaje">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="tel:29001234" class="social-button phone" title="Llamar">
+                                <i class="fas fa-phone"></i>
+                            </a>
+                            <a href="" target="_blank" class="social-button map" title="Ver en mapa">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección de servicios -->
+                <div class="workshop-section">
+                    <h2>Servicios</h2>
+                    <div class="services-grid"></div>
+                </div>
+
+                <!-- Sección de galería -->
+                <div class="workshop-section">
+                    <div class="section-header">
+                        <h2>Galería</h2>
+                        <a href="#" class="see-all">Ver todo</a>
+                    </div>
+                    <div class="gallery-grid">
+
+                    </div>
+                </div>
+
+                <!-- Sección de reseñas -->
+                <div class="workshop-section">
+                    <div class="section-header">
+                        <h2>Reseñas</h2>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/workshop-profile.js"></script>
+</body>
+</html>

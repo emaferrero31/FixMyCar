@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Vehículos - FixMyCar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/vehicles-styles.css">
+</head>
+<body class="dashboard">
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="dashboard-container">
+        <!----------------------------- BARRA LATERAL ------------------------------->
+        <aside class="sidebar" id="sidebar">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h1>FixMyCar</h1>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="vehicles.html" class="nav-item active">
+                    <i class="fas fa-car"></i>
+                    <span>Mis Vehículos</span>
+                </a>
+                <a href="search-workshops.html" class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Buscar Taller</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Configuración</span>
+                </a>
+            </nav>
+            
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <span class="user-name">Usuario Ejemplo</span>
+                    <a href="login.html" class="logout-link">Cerrar sesión</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="user-actions">
+                    <button class="btn-notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="vehicles-container">
+                <div class="dashboard-header">
+                    <h2>Mis Vehículos</h2>
+                    <p>Administra tus vehículos registrados</p>
+                </div>
+
+                <div class="vehicles-actions">
+                    <h3>Lista de Vehículos</h3>
+                    <button class="btn-primary" id="addVehicleBtn">
+                        <i class="fas fa-plus"></i> Agregar Vehículo
+                    </button>
+                </div>
+
+
+
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Vehicle Modal -->
+    <div class="modal" id="vehicleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Agregar Vehículo</h3>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="vehicleForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="brand">Marca</label>
+                            <div class="input-with-icon">
+                                <input type="text" id="brand" name="brand" placeholder="Ej: Toyota" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="model">Modelo</label>
+                            <div class="input-with-icon">
+                                <input type="text" id="model" name="model" placeholder="Ej: Corolla" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="year">Año</label>
+                            <div class="input-with-icon">
+                                <input type="number" id="year" name="year" min="1900" max="2025" placeholder="Ej: 2020" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="licensePlate">Placa</label>
+                            <div class="input-with-icon">
+                                <input type="text" id="licensePlate" name="licensePlate" placeholder="Ej: ABC-1234" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="color">Color</label>
+                            <div class="input-with-icon">
+                                <input type="text" id="color" name="color" placeholder="Ej: Rojo" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fuelType">Tipo de Combustible</label>
+                            <div class="input-with-icon">
+                                <select id="fuelType" name="fuelType" required>
+                                    <option value="">Seleccione...</option>
+                                    <option value="Gasolina">Gasolina</option>
+                                    <option value="Diésel">Diésel</option>
+                                    <option value="Híbrido">Híbrido</option>
+                                    <option value="Eléctrico">Eléctrico</option>
+                                    <option value="Gas">Gas</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="mileage">Kilometraje</label>
+                            <div class="input-with-icon">
+                                <input type="text" id="mileage" name="mileage" placeholder="Ej: 45,000 km" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="vin">Número de Serie (VIN)</label>
+                            <div class="input-with-icon">
+                                <input type="text" id="vin" name="vin" placeholder="Opcional">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" id="cancelBtn">
+                            <i class="fas fa-times"></i> Cancelar
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i> Guardar Vehículo
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/vehicles.js"></script>
+    <script src="js/mobile-menu.js"></script>
+</body>
+</html>

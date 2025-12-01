@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Turnos - FixMyCar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/workshop-appointments-styles.css">
+</head>
+<body class="dashboard">
+    <div class="dashboard-container">
+        <!----------------------------- BARRA LATERAL ------------------------------->
+        <aside class="sidebar" id="sidebar">
+            <div class="logo-container">
+                <i class="fas fa-car-side"></i>
+                <h1>Taller</h1>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="workshop-dashboard.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="workshop-appointments.html" class="nav-item active">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Gestión de Turnos</span>
+                </a>
+                <a href="workshop-inventory.html" class="nav-item">
+                    <i class="fas fa-boxes"></i>
+                    <span>Control de Stock</span>
+                </a>
+                <a href="workshop-edit-profile.html" class="nav-item">
+                    <i class="fas fa-user-edit"></i>
+                    <span>Editar Perfil</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Cerrar Sesión</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="page-title">
+                    <h1>Gestión de Turnos</h1>
+                    <p>Administra los turnos y citas de tu taller</p>
+                </div>
+            </header>
+
+            <!-- Filtros y búsqueda -->
+            <div class="filters-container">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar por cliente, vehículo o motivo...">
+                </div>
+                
+                <div class="filters-row">
+                    <div class="filter-group">
+                        <label for="date-filter">Fecha:</label>
+                        <select id="date-filter" class="filter-select">
+                            <option value="today">Hoy</option>
+                            <option value="tomorrow">Mañana</option>
+                            <option value="week">Esta semana</option>
+                            <option value="month">Este mes</option>
+                            <option value="custom">Personalizado</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="status-filter">Estado:</label>
+                        <select id="status-filter" class="filter-select">
+                            <option value="all">Todos</option>
+                            <option value="pending">Pendientes</option>
+                            <option value="confirmed">Confirmados</option>
+                            <option value="in-progress">En progreso</option>
+                            <option value="completed">Completados</option>
+                            <option value="cancelled">Cancelados</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn btn-primary" id="new-appointment">
+                        <i class="fas fa-plus"></i> Nuevo Turno
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contenedor principal de turnos -->
+            <div class="appointments-container">
+                <!-- Vista de calendario -->
+                <div class="calendar-view">
+                    <div class="calendar-header">
+                        <div class="nav-btns">
+                            <button class="nav-btn" id="prev-week" title="Semana anterior">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <h2 id="current-month">Mes Año</h2>
+                            <button class="nav-btn" id="next-week" title="Siguiente semana">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="week-days">
+                        <div class="week-day-header">Lunes</div>
+                        <div class="week-day-header">Martes</div>
+                        <div class="week-day-header">Miércoles</div>
+                        <div class="week-day-header">Jueves</div>
+                        <div class="week-day-header">Viernes</div>
+                        <div class="week-day-header">Sábado</div>
+                        <div class="week-day-header">Domingo</div>
+                    </div>
+                    
+                    <div class="calendar-grid" id="calendar-grid">
+                        <!-- Los días del calendario se generarán con JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Detalles del turno seleccionado -->
+                <div class="appointment-detail">
+                    <div class="detail-header">
+                        <h3>Detalles del Turno</h3>
+                    </div>
+                    
+                    <div class="detail-content">
+                        <div class="detail-placeholder">
+                            <i class="far fa-calendar-alt"></i>
+                            <p>Selecciona un turno para ver los detalles</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal para nuevo/editar turno -->
+    <div class="modal" id="appointment-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Nuevo Turno</h3>
+                <button class="close-modal" id="close-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <form id="appointment-form">
+                    <input type="hidden" id="appointment-id">
+                    
+                    <div class="form-group">
+                        <label for="client-name-input">Cliente</label>
+                        <div class="input-with-button">
+                            <select id="client-id" class="form-control" required>
+                                <option value="">Seleccionar cliente...</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="vehicle-id">Vehículo</label>
+                        <select id="vehicle-id" class="form-control" required>
+                            <option value="">Seleccionar vehículo...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="appointment-date">Fecha</label>
+                            <input type="date" id="appointment-date-input" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="appointment-time">Hora</label>
+                            <select id="appointment-time-input" class="form-control" required>
+                                <option value="">Seleccionar hora...</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service-type">Servicio</label>
+                        <select id="service-type" class="form-control" required>
+                            <option value="">Seleccionar servicio...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="appointment-notes">Notas adicionales</label>
+                        <textarea id="appointment-notes-input" class="form-control" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/workshop-appointments.js"></script>
+</body>
+</html>

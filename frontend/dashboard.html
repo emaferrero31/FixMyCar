@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - FixMyCar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard-styles.css">
+</head>
+<body class="dashboard">
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="dashboard-container">
+        <!-- Barra lateral -->
+        <aside class="sidebar" id="sidebar">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <i class="fas fa-car"></i>
+                </div>
+                <h1>FixMyCar</h1>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="vehicles.html" class="nav-item">
+                    <i class="fas fa-car"></i>
+                    <span>Mis Vehículos</span>
+                </a>
+                <a href="search-workshops.html" class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Buscar Taller</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Configuración</span>
+                </a>
+            </nav>
+
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <span class="user-name">Usuario Ejemplo</span>
+                    <a href="#" class="logout-link">Cerrar sesión</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="user-actions">
+                    <button class="btn-notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="dashboard-header">
+                <h2>Bienvenido de vuelta, Usuario</h2>
+                <p>Aquí tienes un resumen de tu actividad reciente</p>
+            </div>
+
+            <div class="dashboard-cards">
+                <div class="card">
+                    <div class="card-icon blue">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>Vehículos Registrados</h3>
+                        <p class="card-number"></p>
+                        <a href="#" class="card-link">Ver todos</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon green">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>Próxima Cita</h3>
+                        <p class="card-number"></p>
+                        <a href="#" class="card-link">Ver detalles</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon orange">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>Servicios Activos</h3>
+                        <p class="card-number"></p>
+                        <a href="#" class="card-link">Ver todos</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tablero de Servicios -->
+            <div class="services-board">
+                <h3>Mis Servicios</h3>
+                <div class="board-container">
+                    <!-- Columna Pendiente -->
+                    <div class="board-column">
+                        <div class="column-header">
+                            <h4>Pendiente</h4>
+                            <span class="badge">2</span>
+                        </div>
+
+                    </div>
+
+                    <!-- Columna En Progreso -->
+                    <div class="board-column">
+                        <div class="column-header">
+                            <h4>En Progreso</h4>
+                            <span class="badge">1</span>
+                        </div>
+
+                    </div>
+
+                    <!-- Columna Finalizado -->
+                    <div class="board-column">
+                        <div class="column-header">
+                            <h4>Finalizado</h4>
+                            <span class="badge">3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/mobile-menu.js"></script>
+</body>
+</html>

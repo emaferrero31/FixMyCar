@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Taller - FixMyCar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/search-workshops-styles.css">
+</head>
+<body class="dashboard">
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="dashboard-container">
+        <!----------------------------- BARRA LATERAL ------------------------------->
+        <aside class="sidebar" id="sidebar">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h1>FixMyCar</h1>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="vehicles.html" class="nav-item">
+                    <i class="fas fa-car"></i>
+                    <span>Mis Vehículos</span>
+                </a>
+                <a href="search-workshops.html" class="nav-item active">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Buscar Taller</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Configuración</span>
+                </a>
+            </nav>
+
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <span class="user-name">Usuario Ejemplo</span>
+                    <a href="login.html" class="logout-link">Cerrar sesión</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="user-actions">
+                    <button class="btn-notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="search-container">
+                <div class="dashboard-header">
+                    <h1>Buscar Taller</h1>
+                    <p class="subtitle">Encuentra el taller que mejor se adapte a tus necesidades</p>
+                </div>
+
+                <!-- Filtros de búsqueda -->
+                <div class="search-filters">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Buscar taller por nombre, especialidad o ubicación...">
+                    </div>
+                    <div class="filters-row">
+                        <div class="filter-group">
+                            <label for="service-type">Tipo de servicio</label>
+                            <div class="custom-select">
+                                <select id="service-type">
+                                    <option value="">Todos los servicios</option>
+                                    <option value="mantenimiento">Mantenimiento</option>
+                                    <option value="reparacion">Reparación</option>
+                                    <option value="gomería">Gomería</option>
+                                    <option value="electricidad">Electricidad</option>
+                                    <option value="chapisteria">Chapa y pintura</option>
+                                    <option value="mecanica">Mecánica general</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label for="location">Ubicación</label>
+                            <div class="location-input">
+                                <input type="text" id="location" placeholder="¿Dónde te encuentras?">
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label for="distance">Distancia máxima</label>
+                            <div class="custom-select">
+                                <select id="distance">
+                                    <option value="1">Menos de 1 km</option>
+                                    <option value="5">Menos de 5 km</option>
+                                    <option value="10" selected>Menos de 10 km</option>
+                                    <option value="20">Menos de 20 km</option>
+                                    <option value="50">Menos de 50 km</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn-apply-filters" id="applyFilters">
+                            <i class="fas fa-filter"></i> Quitar Filtros
+                        </button>
+                    </div>
+                </div>
+                        <div class="sort-options">
+                            <span>Ordenar por:</span>
+                            <select>
+                                <option>Mejor calificación</option>
+                                <option>Más cercano</option>
+                                <option>Menor precio</option>
+                            </select>
+                        </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/search-workshops.js"></script>
+</body>
+</html>
