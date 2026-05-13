@@ -12,18 +12,23 @@
     <link rel="stylesheet" href="css/workshop-dashboard-styles.css">
 </head>
 <body class="dashboard">
+    <!-- ========== SECCIÓN: Menú móvil taller (.menu-toggle · workshop-dashboard-styles.css) ========== -->
     <button class="menu-toggle" id="menuToggle">
         <i class="fas fa-bars"></i>
     </button>
     
     <div class="dashboard-container">
-        <!----------------------------- BARRA LATERAL ------------------------------->
+        <!-- ========== SECCIÓN: Barra lateral taller (.sidebar · enlaces Gestión/Inventario/Mi taller) ========== -->
         <aside class="sidebar" id="sidebar">
+            <!-- Item: marca -->
             <div class="logo-container">
-                <i class="fas fa-car-side"></i>
-                <h1>Taller</h1>
+                <div class="logo-circle">
+                    <i class="fas fa-car"></i>
+                </div>
+                <h1>FixMyCar</h1>
             </div>
 
+            <!-- Item: menú navegación taller -->
             <nav class="sidebar-nav">
                 <a href="workshop-dashboard.html" class="nav-item active">
                     <i class="fas fa-home"></i>
@@ -38,73 +43,65 @@
                     <span>Control de Stock</span>
                 </a>
 
-                <a href="workshop-edit-profile.html" class="nav-item">
-                    <i class="fas fa-user-edit"></i>
-                    <span>Editar Perfil</span>
-                </a>
-                <a href="#" class="nav-item">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Cerrar Sesión</span>
+                <a href="workshop-mi-taller.html" class="nav-item">
+                    <i class="fas fa-store"></i>
+                    <span>Mi taller</span>
                 </a>
             </nav>
+
+            <!-- Item: perfil taller (.user-profile) -->
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <span class="user-name" id="sidebarUserName">Taller</span>
+                    <a href="login.html" class="logout-link" id="logoutLink">Cerrar sesión</a>
+                </div>
+            </div>
         </aside>
 
-        <!------------------------- Contenido principal ----------------->
+        <!-- ========== SECCIÓN: Resumen panel taller (.main-content · workshop-dashboard-styles.css) ========== -->
         <main class="main-content">
-            <header class="top-bar">
-                <div class="search-bar">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Buscar...">
-                </div>
-                <div class="user-menu">
-                    <div class="notifications">
-                        <i class="fas fa-bell"></i>
-                        <span class="badge"></span>
-                    </div>
-                    <div class="user-profile">
-                        <img src= alt="Usuario" class="avatar">
-                        <span>Taller Ejemplo</span>
-                    </div>
-                </div>
-            </header>
-
+            <!-- Item: bienvenida (.dashboard-header) -->
             <div class="dashboard-header">
-                <h2>Bienvenido, Taller Ejemplo</h2>
-                <p>Aquí tienes un resumen de tu actividad reciente</p>
+                <h2 id="workshopWelcomeTitle">Bienvenido</h2>
+                <p>Resumen del día y accesos rápidos a lo que más usás</p>
             </div>
 
+            <!-- Item: tarjetas KPI (.dashboard-cards · .card) -->
             <div class="dashboard-cards">
-                <div class="card">
+                <a href="workshop-appointments.html" class="card card-link">
                     <div class="card-icon blue">
                         <i class="fas fa-calendar-check"></i>
                     </div>
                     <div class="card-info">
-                        <h3>Turnos Hoy</h3>
-
-                        <p class="card-detail"><span class="text-success"></span></p>
+                        <h3>Próximo turno</h3>
+                        <p class="card-detail" id="dashboard-proximo-turno">Cargando…</p>
                     </div>
-                </div>
+                </a>
 
-                <div class="card">
+                <a href="workshop-appointments.html" class="card card-link">
                     <div class="card-icon green">
                         <i class="fas fa-tools"></i>
                     </div>
                     <div class="card-info">
-                        <h3>En Progreso</h3>
-
-                        <p class="card-detail">Reparaciones activas</p>
+                        <h3>En progreso</h3>
+                        <p class="card-number" id="dashboard-en-progreso">—</p>
+                        <p class="card-detail">Turnos en reparación</p>
                     </div>
-                </div>
+                </a>
 
-                <div class="card">
+                <a href="workshop-inventory.html" class="card card-link">
                     <div class="card-icon orange">
                         <i class="fas fa-exclamation-triangle"></i>
                     </div>
                     <div class="card-info">
-                        <h3>Stock Bajo</h3>
-
+                        <h3>Alertas de stock</h3>
+                        <p class="card-number" id="dashboard-stock-alertas">—</p>
+                        <p class="card-detail">Sin stock, crítico o bajo</p>
                     </div>
-                </div>
+                </a>
 
                 <div class="card">
                     <div class="card-icon purple">
@@ -112,46 +109,67 @@
                     </div>
                     <div class="card-info">
                         <h3>Valoración</h3>
-
+                        <p class="card-detail" id="dashboard-valoracion">Próximamente</p>
                     </div>
                 </div>
             </div>
 
-            <div class="dashboard-sections">
-                <section class="recent-activity">
-                    <div class="section-header">
-                        <h3>Actividad Reciente</h3>
-                        <a href="#" class="btn-text">Ver todo</a>
+            <!-- Item: tablero Kanban (mismo criterio que dashboard cliente · dashboard-styles en workshop-dashboard-styles) -->
+            <div class="services-board" aria-labelledby="tablero-turnos-titulo">
+                <h3 id="tablero-turnos-titulo">Tablero de turnos</h3>
+                <p class="services-board-sub">Columnas como en la vista del cliente: pendientes, en curso y cerrados. Para confirmar o cambiar estados usá <a href="workshop-appointments.html">Gestión de turnos</a>.</p>
+                <div class="board-container">
+                    <div class="board-column" id="colPendiente">
+                        <div class="column-header">
+                            <h4>Pendiente</h4>
+                            <span class="badge" id="badgePendiente">0</span>
+                        </div>
+                        <div class="column-cards" id="cardsPendiente"></div>
                     </div>
-                </section>
-
-                <section class="quick-actions">
-                    <div class="section-header">
-                        <h3>Acciones Rápidas</h3>
+                    <div class="board-column" id="colEnProgreso">
+                        <div class="column-header">
+                            <h4>En progreso</h4>
+                            <span class="badge" id="badgeEnProgreso">0</span>
+                        </div>
+                        <div class="column-cards" id="cardsEnProgreso"></div>
                     </div>
-                    <div class="action-buttons">
-                        <a href="workshop-appointments.html" class="action-btn">
-                            <i class="fas fa-calendar-plus"></i>
-                            <span>Nuevo Turno</span>
-                        </a>
-                        <a href="workshop-inventory.html" class="action-btn">
-                            <i class="fas fa-box"></i>
-                            <span>Agregar al Inventario</span>
-                        </a>
-                        <a href="workshop-reports.html" class="action-btn">
-                            <i class="fas fa-chart-bar"></i>
-                            <span>Ver Reportes</span>
-                        </a>
-                        <a href="workshop-profile.html" class="action-btn">
-                            <i class="fas fa-cog"></i>
-                            <span>Ajustes</span>
-                        </a>
+                    <div class="board-column" id="colFinalizado">
+                        <div class="column-header">
+                            <h4>Finalizado</h4>
+                            <span class="badge" id="badgeFinalizado">0</span>
+                        </div>
+                        <div class="column-cards" id="cardsFinalizado"></div>
                     </div>
-                </section>
+                </div>
             </div>
+
+            <section class="quick-actions workshop-quick-actions">
+                <div class="section-header">
+                    <h3>Acciones rápidas</h3>
+                </div>
+                <div class="action-buttons">
+                    <a href="workshop-appointments.html" class="action-btn">
+                        <i class="fas fa-calendar-plus"></i>
+                        <span>Nuevo turno</span>
+                    </a>
+                    <a href="workshop-inventory.html" class="action-btn">
+                        <i class="fas fa-box"></i>
+                        <span>Agregar al inventario</span>
+                    </a>
+                    <a href="workshop-reports.html" class="action-btn">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Ver reportes</span>
+                    </a>
+                    <a href="workshop-mi-taller.html" class="action-btn">
+                        <i class="fas fa-store"></i>
+                        <span>Mi taller</span>
+                    </a>
+                </div>
+            </section>
         </main>
     </div>
 
+    <script src="js/api.js"></script>
     <script src="js/workshop-dashboard.js"></script>
 </body>
 </html>

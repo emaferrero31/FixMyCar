@@ -11,12 +11,15 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="login-page">
+    <!-- ========== SECCIÓN: Tarjeta de login (.login-container · css/style.css) ========== -->
     <div class="login-container">
+        <!-- Item: encabezado con marca (.login-logo) -->
         <div class="login-logo">
             <i class="fas fa-car"></i>
             <h1>FixMyCar</h1>
             <p>Iniciar Sesión</p>
         </div>
+        <!-- Item: formulario (.login-form · .form-group · .form-control · .btn-login) -->
         <div class="login-form">
             <form id="loginForm">
                 <div class="form-group">
@@ -29,10 +32,43 @@
                 </div>
                 <button type="submit" class="btn-login">Iniciar Sesión</button>
             </form>
+            <!-- Item: enlace a registro (.register-link) -->
             <div class="register-link">
-                ¿No tienes una cuenta? <a href="index.html">Regístrate aquí</a>
+                ¿No tienes una cuenta? <a href="register.html">Regístrate aquí</a>
             </div>
         </div>
     </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var btn = this.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            var body = {
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value
+            };
+            fetch(FixMyCar.API_BASE + '/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            })
+            .then(function(r) { return r.json().then(function(data) { return { ok: r.ok, data: data }; }); })
+            .then(function(result) {
+                if (result.ok) {
+                    FixMyCar.setUsuario(result.data);
+                    FixMyCar.redirectPorRol(result.data);
+                } else {
+                    alert(result.data.message || 'Usuario o contraseña incorrectos');
+                    btn.disabled = false;
+                }
+            })
+            .catch(function() {
+                alert('Error de conexión. ¿Está el backend en marcha?');
+                btn.disabled = false;
+            });
+        });
+    </script>
 </body>
 </html>

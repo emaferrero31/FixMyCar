@@ -1,4 +1,14 @@
-/* Variables */
+/*
+ * =====================================================================
+ * ARCHIVO: css/style.css
+ * PÁGINAS BASE: index.html (landing), login.html, y todas las que
+ *   enlazan esta hoja para variables, resets y navbar global si aplica.
+ * BLOQUES PRINCIPALES: variables · reset/layout · botones · navbar landing
+ *   · hero · servicios · cómo funciona · footer · página login
+ * =====================================================================
+ */
+
+/* --- SECCIÓN: Variables globales (:root) --- */
 :root {
     --primary-color: #e74c3c;
     --primary-hover: #c0392b;
@@ -12,7 +22,7 @@
     --transition: all 0.3s ease;
 }
 
-/* Estilos generales */
+/* --- SECCIÓN: Reset / tipografía / enlaces (.container compartido) --- */
 * {
     margin: 0;
     padding: 0;
@@ -39,6 +49,7 @@ a {
     padding: 0 20px;
 }
 
+/* --- SECCIÓN: Botones genéricos (.btn .btn-primary .btn-login) --- */
 .btn {
     display: inline-block;
     padding: 10px 20px;
@@ -70,7 +81,7 @@ a {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Navbar */
+/* --- SECCIÓN: Barra de navegación landing (index.html · .navbar .logo .nav-links) --- */
 .navbar {
     background-color: var(--primary-color);
     color: var(--white);
@@ -127,7 +138,7 @@ a {
 }
 
 
-/* Hero Section */
+/* --- SECCIÓN: Hero (index.html · .hero .hero-content) --- */
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1494905998402-395d579af36f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
     height: 100vh;
@@ -158,30 +169,7 @@ a {
     margin-right: auto;
 }
 
-.search-container {
-    display: flex;
-    max-width: 600px;
-    margin: 0 auto;
-    background: var(--white);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    box-shadow: var(--box-shadow);
-}
-
-.search-container input {
-    flex: 1;
-    padding: 15px 20px;
-    border: none;
-    outline: none;
-    font-size: 1rem;
-}
-
-.search-container .btn {
-    border-radius: 0;
-    padding: 15px 30px;
-}
-
-/* Services Section */
+/* --- SECCIÓN: Servicios (.services · no usado en index actual; reutilizable) --- */
 .services {
     padding: 80px 0;
     background-color: var(--white);
@@ -225,7 +213,7 @@ a {
     margin-bottom: 15px;
 }
 
-/* How It Works Section */
+/* --- SECCIÓN: Cómo funciona (index.html · .how-it-works .steps .step) --- */
 .how-it-works {
     padding: 80px 0;
     background-color: var(--light-gray);
@@ -268,7 +256,7 @@ a {
     margin-bottom: 15px;
 }
 
-/* Footer */
+/* --- SECCIÓN: Pie de página (index.html · .footer .footer-logo .footer-column) --- */
 .footer {
     background-color: #222;
     color: var(--white);
@@ -345,7 +333,7 @@ a {
     color: var(--dark-gray);
 }
 
-/* Login Page Styles */
+/* --- SECCIÓN: Página login (login.html · .login-page hasta .login-footer) --- */
 .login-page {
     background: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') no-repeat center center/cover;
     min-height: 100vh;
@@ -355,6 +343,7 @@ a {
     padding: 20px;
 }
 
+/* --- Item: Tarjeta centrada (.login-container) --- */
 .login-container {
     width: 100%;
     max-width: 400px;
@@ -367,6 +356,7 @@ a {
     z-index: 1;
 }
 
+/* --- Item: Marca / logo circular (.login-logo · .logo-circle) --- */
 .login-logo {
     margin-bottom: 30px;
 }
@@ -393,6 +383,7 @@ a {
     font-weight: 600;
 }
 
+/* --- Item: Bloque subtítulo (.login-form h2 · .form-group inputs en login) --- */
 .login-form h2 {
     color: var(--text-color);
     font-size: 22px;
@@ -400,11 +391,13 @@ a {
     font-weight: 600;
 }
 
+/* --- Item: Filas campo (.form-group en login) --- */
 .form-group {
     margin-bottom: 20px;
     text-align: left;
 }
 
+/* --- Item: Íconos en inputs (.input-icon) — variante con padding inputs --- */
 .input-icon {
     position: relative;
 }
@@ -433,6 +426,7 @@ input[type="password"]:focus {
     outline: none;
 }
 
+/* --- Item: Botón enviar sesión (.btn-login-form) --- */
 .btn-login-form {
     width: 100%;
     padding: 12px;
@@ -451,6 +445,7 @@ input[type="password"]:focus {
     background-color: var(--primary-hover);
 }
 
+/* --- Item: Footer enlaces (.form-footer · .register-link) --- */
 .form-footer {
     margin-top: 20px;
     display: flex;
@@ -471,6 +466,7 @@ input[type="password"]:focus {
     text-decoration: underline;
 }
 
+/* --- Item: Línea legal bajo tarjeta (.login-footer) --- */
 .login-footer {
     margin-top: 30px;
     padding-top: 20px;

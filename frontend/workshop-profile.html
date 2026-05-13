@@ -12,11 +12,8 @@
     <link rel="stylesheet" href="css/workshop-profile-styles.css">
 </head>
 <body class="dashboard">
-    <button class="menu-toggle" id="menuToggle">
-        <i class="fas fa-bars"></i>
-    </button>
     <div class="dashboard-container">
-        <!--------------------------- BARRA LATERAL --------------------------->
+        <!-- ========== SECCIÓN: Barra lateral cliente (perfil taller) ========== -->
         <aside class="sidebar" id="sidebar">
             <div class="logo-container">
                 <div class="logo-circle">
@@ -25,6 +22,7 @@
                 <h1>FixMyCar</h1>
             </div>
 
+            <!-- Item: menú (.sidebar-nav) -->
             <nav class="sidebar-nav">
                 <a href="dashboard.html" class="nav-item">
                     <i class="fas fa-home"></i>
@@ -38,44 +36,38 @@
                     <i class="fas fa-calendar-alt"></i>
                     <span>Buscar Taller</span>
                 </a>
-                <a href="#" class="nav-item">
-                    <i class="fas fa-cog"></i>
-                    <span>Configuración</span>
-                </a>
             </nav>
 
+            <!-- Item: perfil (.user-profile) -->
             <div class="user-profile">
                 <div class="user-avatar">
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="user-info">
                     <span class="user-name">Usuario Ejemplo</span>
-                    <a href="login.html" class="logout-link">Cerrar sesión</a>
+                    <a href="#" id="logoutLink" class="logout-link">Cerrar sesión</a>
                 </div>
             </div>
         </aside>
 
-        <!-- Main Content -->
+        <!-- ========== SECCIÓN: Contenido perfil taller (.main-content · .workshop-profile-container) ========== -->
         <main class="main-content">
+            <!-- Item: barra búsqueda superior (.top-bar) -->
             <header class="top-bar">
                 <div class="search-bar">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Buscar taller...">
                 </div>
                 <div class="user-actions">
-                    <button class="btn-notification">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge">3</span>
-                    </button>
                     <div class="user-avatar-small">
                         <i class="fas fa-user"></i>
                     </div>
                 </div>
             </header>
 
-            <!-- Contenido del perfil del taller -->
+            <!-- Item: datos visualización taller (.workshop-header · servicios …) -->
             <div class="workshop-profile-container">
-                <!------------------ Sección de información principal ---------------->
+                <!-- Item: cabecera portada/logo/datos (.workshop-header · .workshop-cover · .workshop-info) -->
                 <div class="workshop-header">
                     <div class="workshop-cover">
                         <img src="" alt="Portada del taller">
@@ -140,13 +132,13 @@
                     </div>
                 </div>
 
-                <!---------- Sección de servicios ------------->
+                <!-- Item: servicios (.workshop-section · .services-grid) -->
                 <div class="workshop-section">
                     <h2>Servicios</h2>
                     <div class="services-grid"></div>
                 </div>
 
-                <!-------------- Sección de galería ------------>
+                <!-- Item: galería (.gallery-grid) -->
                 <div class="workshop-section">
                     <div class="section-header">
                         <h2>Galería</h2>
@@ -157,7 +149,7 @@
                     </div>
                 </div>
 
-                <!--------------- Sección de reseñas -------------->
+                <!-- Item: reseñas -->
                 <div class="workshop-section">
                     <div class="section-header">
                         <h2>Reseñas</h2>
@@ -167,6 +159,7 @@
         </main>
     </div>
 
+    <script src="js/api.js"></script>
     <script src="js/main.js"></script>
     <script src="js/workshop-profile.js"></script>
 </body>

@@ -1,3 +1,11 @@
+/*
+ * =====================================================================
+ * ARCHIVO: css/login.css
+ * HTML: login.html (si enlazás esta hoja; hoy los estilos activos están en style.css)
+ * =====================================================================
+ */
+
+/* --- SECCIÓN: Página completa centrada (.login-page) --- */
 .login-page {
             display: flex;
             justify-content: center;
@@ -7,6 +15,8 @@
             margin: 0;
             padding: 20px;
         }
+
+/* --- SECCIÓN: Tarjeta centrada (.login-container) --- */
         .login-container {
             background: white;
             padding: 40px;
@@ -16,6 +26,8 @@
             max-width: 400px;
             text-align: center;
         }
+
+/* --- SECCIÓN: Marca / ícono título (.login-logo) --- */
         .login-logo {
             margin-bottom: 30px;
         }
@@ -29,6 +41,8 @@
             margin: 10px 0 5px 0;
             font-size: 1.8rem;
         }
+
+/* --- SECCIÓN: Formulario y campos (.login-form · .form-group · .form-control) --- */
         .login-form {
             width: 100%;
         }
@@ -55,6 +69,8 @@
             outline: none;
             box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
         }
+
+/* --- Item: Botón enviar (.btn-login) --- */
         .btn-login {
             width: 100%;
             padding: 12px;
@@ -70,6 +86,8 @@
         .btn-login:hover {
             background-color: #3a7bc8;
         }
+
+/* --- SECCIÓN: Enlace a registro (.register-link) --- */
         .register-link {
             margin-top: 20px;
             color: #666;

@@ -13,16 +13,19 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="dashboard">
+    <!-- ========== SECCIÓN: Menú móvil (.menu-toggle) ========== -->
     <button class="menu-toggle" id="menuToggle">
         <i class="fas fa-bars"></i>
     </button>
     
     <div class="dashboard-container">
-        <!----------------------------- BARRA LATERAL ------------------------------->
+        <!-- ========== SECCIÓN: Barra lateral taller ========== -->
         <aside class="sidebar" id="sidebar">
             <div class="logo-container">
-                <i class="fas fa-car-side"></i>
-                <h1>Taller</h1>
+                <div class="logo-circle">
+                    <i class="fas fa-car"></i>
+                </div>
+                <h1>FixMyCar</h1>
             </div>
 
             <nav class="sidebar-nav">
@@ -38,37 +41,35 @@
                     <i class="fas fa-boxes"></i>
                     <span>Control de Stock</span>
                 </a>
-                <a href="workshop-edit-profile.html" class="nav-item">
-                    <i class="fas fa-user-edit"></i>
-                    <span>Editar Perfil</span>
-                </a>
-                <a href="#" class="nav-item">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Cerrar Sesión</span>
+                <a href="workshop-mi-taller.html" class="nav-item">
+                    <i class="fas fa-store"></i>
+                    <span>Mi taller</span>
                 </a>
             </nav>
+
+            <!-- Item: perfil (.user-profile) -->
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <span class="user-name" id="sidebarUserName">Taller</span>
+                    <a href="login.html" class="logout-link" id="logoutLink">Cerrar sesión</a>
+                </div>
+            </div>
         </aside>
 
-        <!-------------------------------------- Contenido principal -------------------------------->
+        <!-- ========== SECCIÓN: Inventario (main · filtros · .inventory-container) ========== -->
         <main class="main-content">
+            <!-- Item: título (.top-bar) -->
             <header class="top-bar">
                 <div class="page-title">
                     <h1>Gestión de Inventario</h1>
                     <p>Administra el stock de repuestos y suministros</p>
                 </div>
-                <div class="user-menu">
-                    <div class="notifications">
-                        <i class="fas fa-bell"></i>
-                        <span class="badge"></span>
-                    </div>
-                    <div class="user-profile">
-                        <img src="https://png.pngtree.com/template/20200503/ourmid/pngtree-car-repair-shop-logo-image_369113.jpg" alt="Usuario" class="avatar">
-                        <span>Taller Ejemplo</span>
-                    </div>
-                </div>
             </header>
 
-            <!------------------------------------------ filtros ---------------------------->
+            <!-- Item: búsqueda y filtros stock (.filters-container) -->
             <div class="filters-container">
                 <div class="search-bar">
                     <i class="fas fa-search"></i>
@@ -92,7 +93,7 @@
                     
                     <div class="filter-group">
                         <label for="stock-filter">Estado de stock:</label>
-                        <select id="stock-filter" class="filter-select">
+                        <select id="stock-filter" class="filter-select" title="Sin stock: 0 uds. Crítico y bajo se calculan con el stock mínimo de cada producto (formulario).">
                             <option value="all">Todo el stock</option>
                             <option value="low">Stock bajo</option>
                             <option value="critical">Stock crítico</option>
@@ -106,7 +107,7 @@
                 </div>
             </div>
 
-            <!--------------------------Tabla de inventario -------------------------->
+            <!-- Item: tabla stock (.inventory-container · .inventory-table) -->
             <div class="inventory-container">
                 <div class="inventory-header">
                     <div class="inventory-stats"></div>
@@ -136,51 +137,12 @@
                                 <th class="actions-col">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
-
-                            <!----------------------------------- Fila tablass-------------------------------------->
-                            <tr class="inventory-item" data-id="2" data-stock="3" data-category="frenos">
-                                <td class="checkbox-cell">
-                                    <input type="checkbox" class="item-checkbox">
-                                </td>
-                                <td class="item-col">
-                                    <div class="item-info">
-                                        <div class="item-avatar">
-                                            <i class="fas fa-brake-system"></i>
-                                        </div>
-                                        <div class="item-details">
-                                            <h4></h4>
-                                            <span class="item-sku"></span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="category-col">
-                                    <span class="badge category"></span>
-                                </td>
-                                <td class="stock-col">
-                                    <div class="stock-info">
-                                        <div class="stock-bar"></div>
-                                </td>
-                                <td class="price-col"></td>
-                                <td class="status-col">
-                                    <span class="badge warning"></span>
-                                </td>
-                                <td class="actions-col">
-                                    <button class="btn-icon btn-edit" title="Editar">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Eliminar">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
-                
+            </div>
 
-            
-            <!--------------------------------- Barra de acciones flotante --------------------------->
+            <!-- Item: acciones masivas (.floating-actions) -->
             <div class="floating-actions" id="bulkActions" style="display: none;">
                 <div class="selected-count">
                     <span id="selectedItemsCount">0</span> elementos seleccionados
@@ -197,7 +159,7 @@
         </main>
     </div>
 
-    <!-----------------------agregar/editar producto ----------------------------->
+    <!-- ========== SECCIÓN: Modal producto (#product-modal · workshop-inventory-styles.css) ========== -->
     <div class="modal" id="product-modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -285,6 +247,7 @@
         </div>
     </div>
 
+    <script src="js/api.js"></script>
     <script src="js/workshop-inventory.js"></script>
 </body>
 </html>

@@ -13,8 +13,9 @@
 </head>
 <body class="dashboard">
     <div class="dashboard-container">
-        <!----------------------------- BARRA LATERAL ------------------------------->
+        <!-- ========== SECCIÓN: Barra lateral cliente (.sidebar · vehicles-styles.css) ========== -->
         <aside class="sidebar" id="sidebar">
+            <!-- Item: marca (.logo-container · .logo-circle) -->
             <div class="logo-container">
                 <div class="logo-circle">
                     <i class="fas fa-tools"></i>
@@ -22,6 +23,7 @@
                 <h1>FixMyCar</h1>
             </div>
 
+            <!-- Item: menú (.sidebar-nav · .nav-item) -->
             <nav class="sidebar-nav">
                 <a href="dashboard.html" class="nav-item">
                     <i class="fas fa-home"></i>
@@ -32,60 +34,58 @@
                     <span>Mis Vehículos</span>
                 </a>
                 <a href="search-workshops.html" class="nav-item">
-                    <i class="fas fa-calendar-alt"></i>
+                    <i class="fas fa-search"></i>
                     <span>Buscar Taller</span>
                 </a>
-                <a href="#" class="nav-item">
-                    <i class="fas fa-cog"></i>
-                    <span>Configuración</span>
+                <a href="appointments.html" class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Mis Citas</span>
                 </a>
             </nav>
-            
+
+            <!-- Item: perfil usuario pie sidebar (.user-profile) -->
             <div class="user-profile">
                 <div class="user-avatar">
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="user-info">
-                    <span class="user-name">Usuario Ejemplo</span>
-                    <a href="login.html" class="logout-link">Cerrar sesión</a>
+                    <span class="user-name" id="sidebarUserName">Usuario</span>
+                    <a href="login.html" class="logout-link" id="logoutLink">Cerrar sesión</a>
                 </div>
             </div>
         </aside>
 
-        <!-------------------- contendio principal --------------------->
+        <!-- ========== SECCIÓN: Lista de vehículos (.vehicles-container · vehicles-styles.css) ========== -->
         <main class="main-content">
-            <header class="top-bar">
-                <div class="user-actions">
-                    <button class="btn-notification">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge">3</span>
-                    </button>
-                </div>
-            </header>
-
             <div class="vehicles-container">
+                <!-- Item: cabecera (.dashboard-header · dashboard-styles.css) -->
                 <div class="dashboard-header">
                     <h2>Mis Vehículos</h2>
                     <p>Administra tus vehículos registrados</p>
                 </div>
 
+                <!-- Item: acciones lista (.vehicles-actions · #addVehicleBtn) -->
                 <div class="vehicles-actions">
                     <h3>Lista de Vehículos</h3>
                     <button class="btn-primary" id="addVehicleBtn">
                         <i class="fas fa-plus"></i> Agregar Vehículo
                     </button>
                 </div>
+                <!-- Item: rejilla de tarjetas (#vehiclesList) -->
+                <div id="vehiclesList" class="vehicles-grid"></div>
             </div>
         </main>
     </div>
 
-    <!--------------------- agregar/editar vehiculo ----------------->
+    <!-- ========== SECCIÓN: Modal alta/edición (.modal · vehicles-styles.css) ========== -->
     <div class="modal" id="vehicleModal">
         <div class="modal-content">
+            <!-- Item: encabezado (.modal-header · #modalTitle · #closeModal) -->
             <div class="modal-header">
                 <h3 id="modalTitle">Agregar Vehículo</h3>
                 <button class="close-btn" id="closeModal">&times;</button>
             </div>
+            <!-- Item: formulario datos (#vehicleForm · .form-row · .vehicle-photo-group) -->
             <div class="modal-body">
                 <form id="vehicleForm">
                     <div class="form-row">
@@ -107,7 +107,7 @@
                         <div class="form-group">
                             <label for="year">Año</label>
                             <div class="input-with-icon">
-                                <input type="number" id="year" name="year" min="1900" max="2025" placeholder="Ej: 2020" required>
+                                <input type="number" id="year" name="year" min="1900" max="2030" placeholder="Ej: 2020" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -155,6 +155,19 @@
                         </div>
                     </div>
 
+                    <div class="form-group vehicle-photo-group">
+                        <label for="vehiclePhoto">Foto del vehículo <span class="label-optional">(opcional)</span></label>
+                        <div class="vehicle-photo-row">
+                            <input type="file" id="vehiclePhoto" accept="image/jpeg,image/png,image/webp">
+                            <button type="button" class="btn-secondary btn-sm" id="vehiclePhotoClear">Quitar foto</button>
+                        </div>
+                        <p class="vehicle-photo-hint">Se guarda en el servidor como imagen reducida (JPG). Máx. recomendado 4 MB al elegir archivo.</p>
+                        <div class="vehicle-photo-preview" id="vehiclePhotoPreview" hidden>
+                            <img id="vehiclePhotoPreviewImg" src="" alt="Vista previa">
+                        </div>
+                    </div>
+
+                    <!-- Item: botones Cancelar / Guardar (.form-actions) -->
                     <div class="form-actions">
                         <button type="button" class="btn-secondary" id="cancelBtn">
                             <i class="fas fa-times"></i> Cancelar
@@ -168,6 +181,7 @@
         </div>
     </div>
 
+    <script src="js/api.js"></script>
     <script src="js/vehicles.js"></script>
 </body>
 </html>

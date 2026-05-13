@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del taller - FixMyCar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/workshop-dashboard-styles.css">
+    <link rel="stylesheet" href="css/search-workshops-styles.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/taller-publico.css">
+</head>
+<body class="dashboard">
+    <!-- ========== SECCIÓN: Menú móvil (sidebar dual cliente/taller) ========== -->
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="dashboard-container">
+        <!-- ========== SECCIÓN: Sidebar modo cliente (#sidebarCliente · taller-publico.css .nav-panel-cliente) ========== -->
+        <aside class="sidebar nav-panel-cliente" id="sidebarCliente">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h1>FixMyCar</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="vehicles.html" class="nav-item">
+                    <i class="fas fa-car"></i>
+                    <span>Mis Vehículos</span>
+                </a>
+                <a href="search-workshops.html" class="nav-item active">
+                    <i class="fas fa-search"></i>
+                    <span>Buscar Taller</span>
+                </a>
+                <a href="appointments.html" class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Mis Citas</span>
+                </a>
+            </nav>
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <span class="user-name" id="sidebarUserName">Usuario</span>
+                    <a href="login.html" class="logout-link" id="logoutLink">Cerrar sesión</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ========== SECCIÓN: Sidebar modo taller (#sidebarTaller · .nav-panel-taller) ========== -->
+        <aside class="sidebar nav-panel-taller" id="sidebarTaller" hidden>
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <i class="fas fa-car"></i>
+                </div>
+                <h1>FixMyCar</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="workshop-dashboard.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="workshop-appointments.html" class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Gestión de Turnos</span>
+                </a>
+                <a href="workshop-inventory.html" class="nav-item">
+                    <i class="fas fa-boxes"></i>
+                    <span>Control de Stock</span>
+                </a>
+                <a href="workshop-mi-taller.html" class="nav-item">
+                    <i class="fas fa-store"></i>
+                    <span>Mi taller</span>
+                </a>
+                <a href="workshop-edit-profile.html" class="nav-item">
+                    <i class="fas fa-user-edit"></i>
+                    <span>Editar datos</span>
+                </a>
+            </nav>
+
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <span class="user-name" id="sidebarUserNameTaller">Taller</span>
+                    <a href="login.html" class="logout-link taller-logout-btn">Cerrar sesión</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ========== SECCIÓN: Perfil público del taller (.pub-page · taller-publico.css) ========== -->
+        <main class="main-content">
+            <!-- Item: navegación contextual / volver (.pub-top) -->
+            <div class="pub-page">
+                <div class="pub-top">
+                    <a href="search-workshops.html" id="pubBackLinkCliente"><i class="fas fa-arrow-left"></i> Volver a buscar talleres</a>
+                    <a href="workshop-dashboard.html" id="pubBackLinkTaller" hidden><i class="fas fa-arrow-left"></i> Volver al panel del taller</a>
+                </div>
+
+                <p class="pub-loading" id="pubLoading">Cargando perfil del taller…</p>
+                <p class="pub-error" id="pubError" hidden></p>
+
+                <!-- Item: contenido perfil (#pubContent · .pub-cover · .pub-head …) -->
+                <article class="pub-profile-wrap" id="pubContent" hidden>
+                    <div class="pub-cover">
+                        <img src="" alt="" id="pubCoverImg">
+                    </div>
+                    <div class="pub-head">
+                        <div class="pub-logo">
+                            <img src="" alt="" id="pubLogoImg">
+                        </div>
+                        <div class="pub-title-block">
+                            <h1 id="pubNombre">—</h1>
+                            <div class="pub-global-rating">
+                                <span class="pub-stars" id="pubStarsGlobal" aria-hidden="true"></span>
+                                <span id="pubRatingText">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pub-body">
+                        <div class="pub-section">
+                            <h2>Contacto</h2>
+                            <p class="pub-detail" id="pubDireccion"></p>
+                            <p class="pub-detail" id="pubTelefono"></p>
+                            <p class="pub-detail" id="pubEmail"></p>
+                        </div>
+
+                        <div class="pub-section">
+                            <h2>Sobre el taller</h2>
+                            <p class="pub-detail" id="pubDescripcion"></p>
+                            <p class="pub-detail" id="pubWeb"></p>
+                            <p class="pub-detail" id="pubMaps"></p>
+                        </div>
+
+                        <div class="pub-section">
+                            <h2>Redes y WhatsApp</h2>
+                            <div id="pubRedes"></div>
+                        </div>
+
+                        <div class="pub-section">
+                            <h2>Horarios</h2>
+                            <div id="pubHorarios"></div>
+                        </div>
+
+                        <div class="pub-section">
+                            <h2>Servicios / etiquetas</h2>
+                            <div class="pub-tags" id="pubServicios"></div>
+                        </div>
+
+                        <div class="pub-section">
+                            <h2>Galería</h2>
+                            <div class="pub-gallery" id="pubGaleria"></div>
+                        </div>
+
+                        <div class="pub-section">
+                            <h2>Valoraciones y comentarios</h2>
+                            <div id="pubResenas"></div>
+
+                            <div class="pub-form-resena" id="pubFormResena" hidden>
+                                <h3 id="pubFormTitulo">Dejá tu valoración</h3>
+                                <p class="pub-detail" style="margin-bottom:10px;">Puntuación (1 a 5 estrellas)</p>
+                                <div class="pub-star-input" id="pubStarButtons" role="group" aria-label="Estrellas"></div>
+                                <label for="pubComentario" class="pub-detail" style="display:block;margin-bottom:6px;">Comentario (opcional)</label>
+                                <textarea id="pubComentario" maxlength="2000" placeholder="Contá tu experiencia con este taller…"></textarea>
+                                <button type="button" class="btn-submit-resena" id="pubEnviarResena">Publicar</button>
+                                <p class="pub-form-hint" id="pubFormHint"></p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/taller-publico.js"></script>
+</body>
+</html>

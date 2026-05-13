@@ -12,12 +12,14 @@
     <link rel="stylesheet" href="css/search-workshops-styles.css">
 </head>
 <body class="dashboard">
+    <!-- ========== SECCIÓN: Menú móvil (.menu-toggle · search-workshops-styles.css) ========== -->
     <button class="menu-toggle" id="menuToggle">
         <i class="fas fa-bars"></i>
     </button>
     <div class="dashboard-container">
-        <!----------------------------- BARRA LATERAL ------------------------------->
+        <!-- ========== SECCIÓN: Barra lateral cliente (.sidebar) ========== -->
         <aside class="sidebar" id="sidebar">
+            <!-- Item: marca (.logo-container) -->
             <div class="logo-container">
                 <div class="logo-circle">
                     <i class="fas fa-tools"></i>
@@ -25,6 +27,7 @@
                 <h1>FixMyCar</h1>
             </div>
 
+            <!-- Item: menú (.sidebar-nav) -->
             <nav class="sidebar-nav">
                 <a href="dashboard.html" class="nav-item">
                     <i class="fas fa-home"></i>
@@ -35,51 +38,46 @@
                     <span>Mis Vehículos</span>
                 </a>
                 <a href="search-workshops.html" class="nav-item active">
-                    <i class="fas fa-calendar-alt"></i>
+                    <i class="fas fa-search"></i>
                     <span>Buscar Taller</span>
                 </a>
-                <a href="#" class="nav-item">
-                    <i class="fas fa-cog"></i>
-                    <span>Configuración</span>
+                <a href="appointments.html" class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Mis Citas</span>
                 </a>
             </nav>
 
+            <!-- Item: perfil usuario (.user-profile) -->
             <div class="user-profile">
                 <div class="user-avatar">
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="user-info">
-                    <span class="user-name">Usuario Ejemplo</span>
-                    <a href="login.html" class="logout-link">Cerrar sesión</a>
+                    <span class="user-name" id="sidebarUserName">Usuario</span>
+                    <a href="login.html" class="logout-link" id="logoutLink">Cerrar sesión</a>
                 </div>
             </div>
         </aside>
 
-        <!-------------------- contenido principal ----------------->
+        <!-- ========== SECCIÓN: Búsqueda de talleres (.search-container · search-workshops-styles.css) ========== -->
         <main class="main-content">
-            <header class="top-bar">
-                <div class="user-actions">
-                    <button class="btn-notification">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge">3</span>
-                    </button>
-                </div>
-            </header>
-
             <div class="search-container">
+                <!-- Item: título página (.dashboard-header · .subtitle) -->
                 <div class="dashboard-header">
                     <h1>Buscar Taller</h1>
                     <p class="subtitle">Encuentra el taller que mejor se adapte a tus necesidades</p>
                 </div>
 
-                <!-------------- Filtros de búsqueda ----------->
+                <!-- Item: panel filtros (.search-filters) -->
                 <div class="search-filters">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Buscar taller por nombre, especialidad o ubicación...">
-                    </div>
-                    <div class="filters-row">
-                        <div class="filter-group">
+                <!-- Item: caja texto nombre/taller (.search-box · #searchInput) -->
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar taller por nombre o ubicación...">
+                </div>
+                <div class="filters-row">
+                    <!-- Item: tipo de servicio (#service-type) -->
+                    <div class="filter-group">
                             <label for="service-type">Tipo de servicio</label>
                             <div class="custom-select">
                                 <select id="service-type">
@@ -93,43 +91,67 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="filter-group">
-                            <label for="location">Ubicación</label>
+                    <!-- Item: punto de partida / geocoding (.filter-group-location · #location · ayuda · #locationReferenceChip) -->
+                    <div class="filter-group filter-group-location">
+                            <div class="filter-label-row">
+                                <label for="location">Desde dónde buscás</label>
+                                <!-- Item: ayuda ubicación (.info-popover-* · #locationHelpTrigger · #locationHelpPopover) -->
+                                <div class="info-popover-anchor">
+                                    <button type="button" class="info-popover-trigger" id="locationHelpTrigger" aria-expanded="false" aria-controls="locationHelpPopover" aria-label="Ayuda: cómo funciona este campo">
+                                        <i class="fas fa-question-circle" aria-hidden="true"></i>
+                                    </button>
+                                    <div id="locationHelpPopover" class="info-popover-panel" hidden role="tooltip">
+                                        <p class="info-popover-text"><strong>Sin límite de distancia:</strong> este texto filtra talleres cuya dirección <em>registrada</em> lo contenga.</p>
+                                        <p class="info-popover-text"><strong>Con distancia máxima:</strong> escribí <em>tu</em> dirección o barrio (se busca en el mapa); el punto reconocido aparece arriba, al lado del ícono de ayuda. Si lo dejás vacío, se usa tu ubicación actual (GPS).</p>
+                                    </div>
+                                </div>
+                                <!-- Item: chip punto de partida reconocido (.location-reference-row · #locationReferenceChip) -->
+                                <div id="locationReferenceRow" class="location-reference-row" hidden role="status" aria-live="polite" aria-atomic="true">
+                                    <span class="location-reference-chip" id="locationReferenceChip"><i class="fas fa-check-circle" aria-hidden="true"></i> Punto de partida reconocido</span>
+                                </div>
+                            </div>
                             <div class="location-input">
-                                <input type="text" id="location" placeholder="¿Dónde te encuentras?">
+                                <input type="text" id="location" placeholder="Ej: Av. Colón 123, Córdoba" autocomplete="street-address">
                             </div>
                         </div>
-                        <div class="filter-group">
+                    <!-- Item: distancia máxima desde punto partida (#distance) -->
+                    <div class="filter-group">
                             <label for="distance">Distancia máxima</label>
                             <div class="custom-select">
-                                <select id="distance">
+                                <select id="distance" title="Radio en línea recta desde tu punto de partida (no por calles). Requiere dirección o GPS.">
+                                    <option value="" selected>Sin límite</option>
                                     <option value="1">Menos de 1 km</option>
                                     <option value="5">Menos de 5 km</option>
-                                    <option value="10" selected>Menos de 10 km</option>
+                                    <option value="10">Menos de 10 km</option>
                                     <option value="20">Menos de 20 km</option>
                                     <option value="50">Menos de 50 km</option>
                                 </select>
                             </div>
                         </div>
+                    <!-- Item: aplicar filtros (.btn-apply-filters · #applyFilters) -->
                         <button class="btn-apply-filters" id="applyFilters">
-                            <i class="fas fa-filter"></i> Quitar Filtros
+                            <i class="fas fa-search"></i> Buscar
                         </button>
                     </div>
                 </div>
-                        <div class="sort-options">
-                            <span>Ordenar por:</span>
-                            <select>
-                                <option>Mejor calificación</option>
-                                <option>Más cercano</option>
-                                <option>Menor precio</option>
-                            </select>
-                        </div>
+                <!-- Item: orden resultado (.sort-options · #sortBy) -->
+                <div class="sort-options">
+                    <span>Ordenar por:</span>
+                    <select id="sortBy">
+                        <option value="nombre">Nombre</option>
+                        <option value="direccion">Dirección</option>
+                        <option value="puntuacion">Puntuación (mejor valorados primero)</option>
+                    </select>
+                </div>
+                <!-- Item: listado talleres (.search-results · #workshopsList) -->
+                <div class="search-results">
+                    <div id="workshopsList" class="workshops-list"></div>
                 </div>
             </div>
         </main>
     </div>
 
-    <script src="js/main.js"></script>
+    <script src="js/api.js"></script>
     <script src="js/search-workshops.js"></script>
 </body>
 </html>

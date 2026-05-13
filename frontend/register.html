@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - FixMyCar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body class="register-page">
+    <!-- ========== SECCIÓN: Barra superior (.register-nav · register.css) ========== -->
+    <nav class="register-nav">
+        <!-- Item: logo a inicio (.register-nav-logo) -->
+        <a href="index.html" class="register-nav-logo">
+            <i class="fas fa-car"></i>
+            <span>FixMyCar</span>
+        </a>
+        <!-- Item: acceso login (.register-nav-login) -->
+        <a href="login.html" class="register-nav-login">Iniciar Sesión</a>
+    </nav>
+
+    <!-- ========== SECCIÓN: Contenedor registro (.register-wrapper · register.css) ========== -->
+    <div class="register-wrapper">
+        <!-- Item: tarjeta blanca (.register-container) -->
+        <div class="register-container">
+            <!-- Paso 1: Elegir tipo de cuenta -->
+            <div id="stepChooseType" class="register-step">
+                <div class="register-header">
+                    <div class="logo-circle">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h1>Crear cuenta</h1>
+                    <p>¿Cómo te gustaría registrarte?</p>
+                </div>
+                <div class="register-type-cards">
+                    <button type="button" class="type-card" data-type="usuario" id="cardUsuario">
+                        <div class="type-card-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>Usuario</h3>
+                        <p>Busco talleres y quiero agendar citas para mis vehículos</p>
+                    </button>
+                    <button type="button" class="type-card" data-type="taller" id="cardTaller">
+                        <div class="type-card-icon taller">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3>Taller</h3>
+                        <p>Tengo un taller y quiero gestionar turnos y clientes</p>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Paso 2: Formulario Usuario -->
+            <div id="stepFormUsuario" class="register-step register-form-step" hidden>
+                <button type="button" class="register-back" id="backFromUsuario" aria-label="Volver">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div class="register-header">
+                    <div class="logo-circle small">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h1>Registro de usuario</h1>
+                    <p>Completá tus datos para crear tu cuenta</p>
+                </div>
+                <form id="formUsuario" class="register-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="usuarioNombre">Nombre</label>
+                            <input type="text" id="usuarioNombre" name="nombre" class="form-control" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="usuarioApellido">Apellido</label>
+                            <input type="text" id="usuarioApellido" name="apellido" class="form-control" placeholder="Tu apellido" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="usuarioEmail">Correo electrónico</label>
+                        <input type="email" id="usuarioEmail" name="email" class="form-control" placeholder="ejemplo@correo.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="usuarioTelefono">Teléfono</label>
+                        <input type="tel" id="usuarioTelefono" name="telefono" class="form-control" placeholder="11 1234-5678">
+                    </div>
+                    <div class="form-group">
+                        <label for="usuarioUsername">Usuario</label>
+                        <input type="text" id="usuarioUsername" name="username" class="form-control" placeholder="Nombre de usuario" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="usuarioPassword">Contraseña</label>
+                        <input type="password" id="usuarioPassword" name="password" class="form-control" placeholder="Mínimo 6 caracteres" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label for="usuarioPasswordConfirm">Confirmar contraseña</label>
+                        <input type="password" id="usuarioPasswordConfirm" name="passwordConfirm" class="form-control" placeholder="Repetí tu contraseña" required minlength="6">
+                    </div>
+                    <button type="submit" class="btn-register">Crear cuenta</button>
+                </form>
+            </div>
+
+            <!-- Paso 2: Formulario Taller -->
+            <div id="stepFormTaller" class="register-step register-form-step" hidden>
+                <button type="button" class="register-back" id="backFromTaller" aria-label="Volver">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div class="register-header">
+                    <div class="logo-circle small taller">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h1>Registro de taller</h1>
+                    <p>Completá los datos de tu taller para crear tu cuenta</p>
+                </div>
+                <form id="formTaller" class="register-form">
+                    <div class="form-group">
+                        <label for="tallerNombre">Nombre del taller</label>
+                        <input type="text" id="tallerNombre" name="nombreTaller" class="form-control" placeholder="Ej: Mecánica López" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tallerDireccion">Dirección</label>
+                        <input type="text" id="tallerDireccion" name="direccion" class="form-control" placeholder="Calle, número, localidad" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tallerTelefono">Teléfono</label>
+                            <input type="tel" id="tallerTelefono" name="telefono" class="form-control" placeholder="11 1234-5678" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tallerEmail">Correo electrónico</label>
+                            <input type="email" id="tallerEmail" name="email" class="form-control" placeholder="taller@correo.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tallerUsername">Usuario</label>
+                        <input type="text" id="tallerUsername" name="username" class="form-control" placeholder="Nombre de usuario" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tallerPassword">Contraseña</label>
+                        <input type="password" id="tallerPassword" name="password" class="form-control" placeholder="Mínimo 6 caracteres" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label for="tallerPasswordConfirm">Confirmar contraseña</label>
+                        <input type="password" id="tallerPasswordConfirm" name="passwordConfirm" class="form-control" placeholder="Repetí tu contraseña" required minlength="6">
+                    </div>
+                    <button type="submit" class="btn-register">Crear cuenta de taller</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Item: pie con enlace sesión (.register-footer) -->
+        <div class="register-footer">
+            ¿Ya tenés cuenta? <a href="login.html">Iniciar sesión</a>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            var stepChoose = document.getElementById('stepChooseType');
+            var stepUsuario = document.getElementById('stepFormUsuario');
+            var stepTaller = document.getElementById('stepFormTaller');
+
+            document.getElementById('cardUsuario').addEventListener('click', function() {
+                stepChoose.hidden = true;
+                stepUsuario.hidden = false;
+                stepTaller.hidden = true;
+            });
+
+            document.getElementById('cardTaller').addEventListener('click', function() {
+                stepChoose.hidden = true;
+                stepUsuario.hidden = true;
+                stepTaller.hidden = false;
+            });
+
+            document.getElementById('backFromUsuario').addEventListener('click', function() {
+                stepChoose.hidden = false;
+                stepUsuario.hidden = true;
+            });
+
+            document.getElementById('backFromTaller').addEventListener('click', function() {
+                stepChoose.hidden = false;
+                stepTaller.hidden = true;
+            });
+
+            function checkPasswords(formId, passId, confirmId) {
+                var form = document.getElementById(formId);
+                var pass = document.getElementById(passId);
+                var confirm = document.getElementById(confirmId);
+                if (pass.value !== confirm.value) {
+                    confirm.setCustomValidity('Las contraseñas no coinciden');
+                    return false;
+                }
+                confirm.setCustomValidity('');
+                return true;
+            }
+
+            document.getElementById('formUsuario').addEventListener('submit', function(e) {
+                if (!checkPasswords('formUsuario', 'usuarioPassword', 'usuarioPasswordConfirm')) {
+                    e.preventDefault();
+                }
+            });
+            document.getElementById('usuarioPasswordConfirm').addEventListener('input', function() {
+                checkPasswords('formUsuario', 'usuarioPassword', 'usuarioPasswordConfirm');
+            });
+
+            document.getElementById('formTaller').addEventListener('submit', function(e) {
+                if (!checkPasswords('formTaller', 'tallerPassword', 'tallerPasswordConfirm')) {
+                    e.preventDefault();
+                }
+            });
+            document.getElementById('tallerPasswordConfirm').addEventListener('input', function() {
+                checkPasswords('formTaller', 'tallerPassword', 'tallerPasswordConfirm');
+            });
+
+            var API_BASE = 'http://localhost:8080/api';
+
+            document.getElementById('formUsuario').addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (document.getElementById('usuarioPassword').value !== document.getElementById('usuarioPasswordConfirm').value) return;
+                var btn = this.querySelector('button[type="submit"]');
+                btn.disabled = true;
+                var body = {
+                    nombre: document.getElementById('usuarioNombre').value.trim(),
+                    apellido: document.getElementById('usuarioApellido').value.trim(),
+                    email: document.getElementById('usuarioEmail').value.trim(),
+                    telefono: document.getElementById('usuarioTelefono').value.trim() || null,
+                    username: document.getElementById('usuarioUsername').value.trim(),
+                    password: document.getElementById('usuarioPassword').value
+                };
+                fetch(API_BASE + '/auth/register/cliente', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                })
+                .then(function(r) { return r.json().then(function(data) { return { ok: r.ok, data: data }; }); })
+                .then(function(result) {
+                    if (result.ok) {
+                        localStorage.setItem('fixmycar_usuario', JSON.stringify(result.data));
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        alert(result.data.message || 'Error al registrarse');
+                        btn.disabled = false;
+                    }
+                })
+                .catch(function() {
+                    alert('Error de conexión. ¿Está el backend en marcha?');
+                    btn.disabled = false;
+                });
+            });
+
+            document.getElementById('formTaller').addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (document.getElementById('tallerPassword').value !== document.getElementById('tallerPasswordConfirm').value) return;
+                var btn = this.querySelector('button[type="submit"]');
+                btn.disabled = true;
+                var body = {
+                    nombreTaller: document.getElementById('tallerNombre').value.trim(),
+                    direccion: document.getElementById('tallerDireccion').value.trim(),
+                    telefono: document.getElementById('tallerTelefono').value.trim(),
+                    email: document.getElementById('tallerEmail').value.trim(),
+                    username: document.getElementById('tallerUsername').value.trim(),
+                    password: document.getElementById('tallerPassword').value
+                };
+                fetch(API_BASE + '/auth/register/taller', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                })
+                .then(function(r) { return r.json().then(function(data) { return { ok: r.ok, data: data }; }); })
+                .then(function(result) {
+                    if (result.ok) {
+                        localStorage.setItem('fixmycar_usuario', JSON.stringify(result.data));
+                        window.location.href = 'workshop-dashboard.html';
+                    } else {
+                        alert(result.data.message || 'Error al registrarse');
+                        btn.disabled = false;
+                    }
+                })
+                .catch(function() {
+                    alert('Error de conexión. ¿Está el backend en marcha?');
+                    btn.disabled = false;
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

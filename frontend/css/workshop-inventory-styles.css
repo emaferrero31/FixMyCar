@@ -1,6 +1,18 @@
-/* Estilos generales para la gestión de inventario */
+/*
+ * =====================================================================
+ * ARCHIVO: css/workshop-inventory-styles.css
+ * HTML: workshop-inventory.html (usa también workshop-dashboard-styles.css)
+ * CONTENIDO: .main-content inventario · filtros · tablas/modales stock
+ * =====================================================================
+ */
+
+/* --- SECCIÓN: Área principal inventario (.main-content · .inventory-container) --- */
 .main-content {
     flex: 1;
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    box-sizing: border-box;
     padding: 20px;
     overflow-y: auto;
     background-color: #f5f7fa;
@@ -14,6 +26,7 @@
     margin-top: 20px;
 }
 
+/* --- SECCIÓN: Barra título (.top-bar · .page-title) --- */
 .top-bar {
     display: flex;
     justify-content: space-between;
@@ -33,7 +46,7 @@
     font-size: 0.9rem;
 }
 
-/* Encabezado de estadísticas */
+/* --- SECCIÓN: Header estadísticas y acciones (.inventory-header) --- */
 .inventory-header {
     display: flex;
     justify-content: space-between;
@@ -45,7 +58,7 @@
     border-bottom: 1px solid #ecf0f1;
 }
 
-/* Filtros */
+/* --- SECCIÓN: Panel filtros (.filters-container) — escritorio --- */
 .filters-container {
     background-color: #fff;
     border-radius: 8px;
@@ -54,29 +67,42 @@
     margin-bottom: 20px;
 }
 
-.search-bar {
+.filters-container .search-bar {
     position: relative;
+    display: block;
+    width: 100%;
+    max-width: none;
     margin-bottom: 15px;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
 }
 
-.search-bar i {
+.filters-container .search-bar > i {
     position: absolute;
-    left: 12px;
+    left: 16px;
     top: 50%;
     transform: translateY(-50%);
     color: #95a5a6;
+    font-size: 0.95rem;
+    z-index: 1;
+    pointer-events: none;
+    margin: 0;
 }
 
-#search-inventory {
+.filters-container #search-inventory {
     width: 100%;
-    padding: 10px 15px 10px 40px;
+    box-sizing: border-box;
+    padding: 10px 15px 10px 46px;
     border: 1px solid #e0e0e0;
     border-radius: 6px;
     font-size: 0.9rem;
     transition: all 0.3s ease;
+    background-color: #fff;
 }
 
-#search-inventory:focus {
+.filters-container #search-inventory:focus {
     outline: none;
     border-color: #3498db;
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
@@ -111,7 +137,7 @@
     cursor: pointer;
 }
 
-/* Tabla de inventario */
+/* --- SECCIÓN: Tabla inventario (.table-responsive · .inventory-table) — escritorio --- */
 .table-responsive {
     overflow-x: auto;
     margin-bottom: 20px;
@@ -145,7 +171,7 @@
     background-color: #f8fafd;
 }
 
-/* Estilos para los badges */
+/* --- SECCIÓN: Badges categoría/estado (.badge) --- */
 .badge {
     display: inline-block;
     padding: 4px 8px;
@@ -171,13 +197,30 @@
     color: #e74c3c;
 }
 
+.badge.critical {
+    background-color: #fadbd8;
+    color: #922b21;
+}
+
 .badge.category {
     background-color: #f0f7ff;
     color: #3498db;
     text-transform: capitalize;
 }
 
-/* Botones de acción */
+/* --- Item: .badge en celdas tabla --- */
+.inventory-table .badge {
+    position: static;
+    top: auto;
+    right: auto;
+    left: auto;
+    width: auto;
+    height: auto;
+    min-width: 0;
+    display: inline-block;
+}
+
+/* --- SECCIÓN: Botones (.btn …) --- */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -239,7 +282,7 @@
     background-color: rgba(231, 76, 60, 0.1);
 }
 
-/* Barra de acciones flotante */
+/* --- SECCIÓN: Barra acciones masivas fija (.floating-actions) — primer bloque --- */
 .floating-actions {
     position: fixed;
     bottom: 30px;
@@ -283,7 +326,7 @@
     }
 }
 
-/* Responsive */
+/* --- SECCIÓN: Responsive inventario (992px · 768px) — bloque superior --- */
 @media (max-width: 992px) {
     .form-row {
         flex-direction: column;
@@ -340,6 +383,7 @@
     }
 }
 
+/* --- SECCIÓN: Tarjetas KPI (.inventory-stats · .stat-card · .stat-value) --- */
 .inventory-stats {
     display: flex;
     gap: 15px;
@@ -385,41 +429,13 @@
     gap: 10px;
 }
 
-/* Filtros */
+/* --- SECCIÓN: Panel filtros (segunda definición en hoja · .filters-container) --- */
 .filters-container {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     padding: 15px 20px;
     margin-bottom: 20px;
-}
-
-.search-bar {
-    position: relative;
-    margin-bottom: 15px;
-}
-
-.search-bar i {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #95a5a6;
-}
-
-#search-inventory {
-    width: 100%;
-    padding: 10px 15px 10px 40px;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    transition: border-color 0.3s ease;
-}
-
-#search-inventory:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
 .filters-row {
@@ -457,7 +473,7 @@
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
-/* Tabla de inventario */
+/* --- SECCIÓN: Tabla (segunda definición · .table-responsive) --- */
 .table-responsive {
     overflow-x: auto;
     margin-bottom: 20px;
@@ -491,7 +507,7 @@
     background-color: #f8fafd;
 }
 
-/* Celdas específicas */
+/* --- SECCIÓN: Anchos columnas tabla (.checkbox-cell · .item-col …) --- */
 .checkbox-cell {
     width: 40px;
     padding-right: 0 !important;
@@ -530,7 +546,7 @@
     text-align: right;
 }
 
-/* Estilos para la información del ítem */
+/* --- SECCIÓN: Celda nombre producto (.item-info · avatar · SKU) --- */
 .item-info {
     display: flex;
     align-items: center;
@@ -562,7 +578,7 @@
     color: #7f8c8d;
 }
 
-/* Barra de stock */
+/* --- SECCIÓN: Mini barra de nivel stock (.stock-info · .stock-bar · .stock-level) --- */
 .stock-info {
     display: flex;
     flex-direction: column;
@@ -591,7 +607,7 @@
     background-color: #e74c3c;
 }
 
-/* Badges */
+/* --- SECCIÓN: Badges (segunda definición · .badge) --- */
 .badge {
     display: inline-block;
     padding: 4px 8px;
@@ -617,13 +633,18 @@
     color: #e74c3c;
 }
 
+.badge.critical {
+    background-color: #fadbd8;
+    color: #922b21;
+}
+
 .badge.category {
     background-color: #f0f7ff;
     color: #3498db;
     text-transform: capitalize;
 }
 
-/* Botones de acción */
+/* --- SECCIÓN: Acciones por fila (.actions-col · .btn-icon segunda tanda) --- */
 .actions-col {
     display: flex;
     justify-content: flex-end;
@@ -659,7 +680,7 @@
     background-color: rgba(231, 76, 60, 0.1);
 }
 
-/* Paginación */
+/* --- SECCIÓN: Paginación (.pagination) --- */
 .pagination {
     display: flex;
     justify-content: center;
@@ -703,7 +724,7 @@
     color: #7f8c8d;
 }
 
-/* Acciones flotantes */
+/* --- SECCIÓN: Floating actions (.floating-actions segunda · @keyframes slideUp) --- */
 .floating-actions {
     position: fixed;
     bottom: 30px;
@@ -746,7 +767,7 @@
     gap: 10px;
 }
 
-/* Modal */
+/* --- SECCIÓN: Modal producto (.modal · .modal-content …) --- */
 .modal {
     display: none;
     position: fixed;
@@ -802,7 +823,7 @@
     padding: 20px;
 }
 
-/* Formulario */
+/* --- SECCIÓN: Formulario modal (.form-row · .form-group · .form-actions) --- */
 .form-row {
     display: flex;
     gap: 15px;
@@ -870,7 +891,7 @@
     border-top: 1px solid #ecf0f1;
 }
 
-/* Responsive */
+/* --- SECCIÓN: Responsive final (modal + KPI + floating) --- */
 @media (max-width: 992px) {
     .form-row {
         flex-direction: column;
@@ -927,7 +948,7 @@
     }
 }
 
-/* Animaciones */
+/* --- SECCIÓN: Keyframes lista (.inventory-item fadeIn) --- */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }

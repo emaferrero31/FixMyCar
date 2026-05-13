@@ -1,0 +1,151 @@
+/*
+ * =====================================================================
+ * ARCHIVO: css/workshop-mi-taller.css
+ * HTML: workshop-mi-taller.html · extiende clases de workshop-edit-profile-styles
+ * =====================================================================
+ */
+
+/* --- SECCIÓN: Solo lectura (ocultar acciones edición sobre layout edit-profile) --- */
+.mi-taller-vista .profile-header .cover-actions,
+.mi-taller-vista .change-avatar-btn {
+    display: none !important;
+}
+
+/* --- SECCIÓN: Toolbar título + Editar (.mi-taller-toolbar · .mi-taller-h1 · .mi-taller-btn-editar) --- */
+.mi-taller-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px 24px 6px;
+    margin-bottom: 22px;
+}
+
+.mi-taller-h1 {
+    margin: 0;
+    padding-top: 2px;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.mi-taller-btn-editar {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    margin-top: 12px;
+}
+
+/* --- Item: Portada baja · logo destacado (solo .mi-taller-vista) --- */
+.mi-taller-vista .profile-header {
+    margin-bottom: 104px;
+}
+
+.mi-taller-vista .cover-photo {
+    height: 200px;
+}
+
+.mi-taller-vista .profile-avatar {
+    bottom: -82px;
+    left: clamp(18px, 3.5vw, 36px);
+}
+
+.mi-taller-vista .avatar-container {
+    width: 176px;
+    height: 176px;
+    border-width: 5px;
+}
+
+/* --- SECCIÓN: Mensajes carga/error (.mi-taller-loading · .mi-taller-error) --- */
+.mi-taller-loading,
+.mi-taller-error {
+    margin: 16px 0;
+    font-size: 0.95rem;
+    color: #7f8c8d;
+}
+
+.mi-taller-error {
+    color: #c0392b;
+}
+
+/* --- SECCIÓN: Campos solo lectura (.view-value · .view-muted · .view-empty …) --- */
+.mi-taller-vista .view-value {
+    font-size: 0.95rem;
+    color: #2c3e50;
+    padding: 10px 12px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #ecf0f1;
+    min-height: 1.25em;
+    line-height: 1.45;
+}
+
+.mi-taller-vista .view-value.view-multiline {
+    white-space: pre-wrap;
+}
+
+.mi-taller-vista .view-muted {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+.mi-taller-vista .view-value a:not(.view-link-empty) {
+    color: #2980b9;
+    word-break: break-all;
+}
+
+.mi-taller-vista .view-value a:empty::after,
+.mi-taller-vista .view-value:empty::after {
+    content: '—';
+    color: #bdc3c7;
+}
+
+.mi-taller-vista .view-empty {
+    margin: 0;
+    padding: 16px;
+    color: #95a5a6;
+    font-size: 0.9rem;
+    background: #fafbfc;
+    border-radius: 8px;
+    border: 1px dashed #e0e0e0;
+}
+
+/* --- Item: Horario sólo vista (.view-schedule-item) --- */
+.mi-taller-vista .view-schedule-item {
+    padding: 10px 14px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #2c3e50;
+}
+
+/* --- SECCIÓN: Tags y galería vista (.service-tags-view · .view-gallery-img) --- */
+.mi-taller-vista .service-tags-view {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.mi-taller-vista .view-service-tag {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    background: #e8f4fc;
+    color: #2980b9;
+    border: 1px solid #d6eaf8;
+}
+
+.mi-taller-vista .view-gallery-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}

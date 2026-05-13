@@ -12,12 +12,10 @@
     <link rel="stylesheet" href="css/dashboard-styles.css">
 </head>
 <body class="dashboard">
-    <button class="menu-toggle" id="menuToggle">
-        <i class="fas fa-bars"></i>
-    </button>
     <div class="dashboard-container">
-        <!------------------------ Barra lateral -------------------->
+        <!-- ========== SECCIÓN: Barra lateral cliente (.sidebar · dashboard-styles.css) ========== -->
         <aside class="sidebar" id="sidebar">
+            <!-- Item: marca sidebar (.logo-container) -->
             <div class="logo-container">
                 <div class="logo-circle">
                     <i class="fas fa-car"></i>
@@ -25,6 +23,7 @@
                 <h1>FixMyCar</h1>
             </div>
 
+            <!-- Item: menú navegación (.sidebar-nav) -->
             <nav class="sidebar-nav">
                 <a href="dashboard.html" class="nav-item active">
                     <i class="fas fa-home"></i>
@@ -35,42 +34,36 @@
                     <span>Mis Vehículos</span>
                 </a>
                 <a href="search-workshops.html" class="nav-item">
-                    <i class="fas fa-calendar-alt"></i>
+                    <i class="fas fa-search"></i>
                     <span>Buscar Taller</span>
                 </a>
-                <a href="#" class="nav-item">
-                    <i class="fas fa-cog"></i>
-                    <span>Configuración</span>
+                <a href="appointments.html" class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Mis Citas</span>
                 </a>
             </nav>
 
+            <!-- Item: perfil usuario sidebar (.user-profile) -->
             <div class="user-profile">
                 <div class="user-avatar">
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="user-info">
-                    <span class="user-name">Usuario Ejemplo</span>
-                    <a href="#" class="logout-link">Cerrar sesión</a>
+                    <span class="user-name" id="sidebarUserName">Usuario</span>
+                    <a href="login.html" class="logout-link" id="logoutLink">Cerrar sesión</a>
                 </div>
             </div>
         </aside>
 
-        <!--------------------- Contenido principal ------------------->
+        <!-- ========== SECCIÓN: Contenido / resumen (.main-content · dashboard-styles.css) ========== -->
         <main class="main-content">
-            <header class="top-bar">
-                <div class="user-actions">
-                    <button class="btn-notification">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge">3</span>
-                    </button>
-                </div>
-            </header>
-
+            <!-- Item: texto bienvenida (.dashboard-header) -->
             <div class="dashboard-header">
-                <h2>Bienvenido de vuelta, Usuario</h2>
+                <h2 id="welcomeTitle">Bienvenido de vuelta</h2>
                 <p>Aquí tienes un resumen de tu actividad reciente</p>
             </div>
 
+            <!-- Item: tarjetas KPI (.dashboard-cards · .card · .card-icon · .card-info) -->
             <div class="dashboard-cards">
                 <div class="card">
                     <div class="card-icon blue">
@@ -78,8 +71,8 @@
                     </div>
                     <div class="card-info">
                         <h3>Vehículos Registrados</h3>
-                        <p class="card-number"></p>
-                        <a href="#" class="card-link">Ver todos</a>
+                        <p class="card-number" id="cardVehiculos">0</p>
+                        <a href="vehicles.html" class="card-link">Ver todos</a>
                     </div>
                 </div>
 
@@ -89,8 +82,8 @@
                     </div>
                     <div class="card-info">
                         <h3>Próxima Cita</h3>
-                        <p class="card-number"></p>
-                        <a href="#" class="card-link">Ver detalles</a>
+                        <p class="card-number" id="cardProximaCita">—</p>
+                        <a href="appointments.html" class="card-link">Ver todas</a>
                     </div>
                 </div>
 
@@ -99,50 +92,62 @@
                         <i class="fas fa-tools"></i>
                     </div>
                     <div class="card-info">
-                        <h3>Servicios Activos</h3>
-                        <p class="card-number"></p>
-                        <a href="#" class="card-link">Ver todos</a>
+                        <h3>Citas Activas</h3>
+                        <p class="card-number" id="cardCitasActivas">0</p>
+                        <a href="appointments.html" class="card-link">Ver todas</a>
                     </div>
                 </div>
             </div>
 
-            <!------------------------- Tablero de Servicios ------------------------------->
+            <!-- Item: Kanban citas (.services-board · .board-column · .column-header) -->
             <div class="services-board">
-                <h3>Mis Servicios</h3>
+                <h3>Mis Citas</h3>
 
                 <div class="board-container">
-                    <!---------------- columna Pendiente -------------------->
-                    <div class="board-column">
+                    <div class="board-column" id="colPendiente">
                         <div class="column-header">
                             <h4>Pendiente</h4>
-                            <span class="badge">2</span>
+                            <span class="badge" id="badgePendiente">0</span>
                         </div>
-
+                        <div class="column-cards" id="cardsPendiente"></div>
                     </div>
 
-                    <!------------------- c olumna En Progreso --------------->
-                    <div class="board-column">
+                    <div class="board-column" id="colEnProgreso">
                         <div class="column-header">
                             <h4>En Progreso</h4>
-                            <span class="badge">1</span>
+                            <span class="badge" id="badgeEnProgreso">0</span>
                         </div>
-
+                        <div class="column-cards" id="cardsEnProgreso"></div>
                     </div>
 
-                    <!-------------- columna Finalizado --------------------->
-                    <div class="board-column">
+                    <div class="board-column" id="colFinalizado">
                         <div class="column-header">
                             <h4>Finalizado</h4>
-                            <span class="badge">3</span>
+                            <span class="badge" id="badgeFinalizado">0</span>
                         </div>
+                        <div class="column-cards" id="cardsFinalizado"></div>
                     </div>
-                </div>
-            </div>
                 </div>
             </div>
         </main>
     </div>
 
+    <script src="js/api.js"></script>
+    <script>
+        (function() {
+            var u = FixMyCar.getUsuario();
+            if (!u) { window.location.href = 'login.html'; return; }
+            if (u.role === 'TALLER') { window.location.href = 'workshop-dashboard.html'; return; }
+            var nameEl = document.getElementById('sidebarUserName');
+            if (nameEl) nameEl.textContent = u.nombre || u.username;
+            document.getElementById('logoutLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                FixMyCar.logout();
+                window.location.href = 'login.html';
+            });
+        })();
+    </script>
+    <script src="js/dashboard.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

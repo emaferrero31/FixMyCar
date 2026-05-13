@@ -13,20 +13,24 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="dashboard">
+    <!-- ========== SECCIÓN: Menú móvil ========== -->
     <button class="menu-toggle" id="menuToggle">
         <i class="fas fa-bars"></i>
     </button>
     
     <div class="dashboard-container">
-        <!----------------------------- BARRA LATERAL ------------------------------->
+        <!-- ========== SECCIÓN: Barra lateral taller ========== -->
         <aside class="sidebar" id="sidebar">
             <div class="logo-container">
-                <i class="fas fa-car-side"></i>
-                <h1>Taller</h1>
+                <div class="logo-circle">
+                    <i class="fas fa-car"></i>
+                </div>
+                <h1>FixMyCar</h1>
             </div>
 
+            <!-- Item: menú (.sidebar-nav) -->
             <nav class="sidebar-nav">
-                <a href="workshop-dashboard.html" class="nav-item active">
+                <a href="workshop-dashboard.html" class="nav-item">
                     <i class="fas fa-home"></i>
                     <span>Inicio</span>
                 </a>
@@ -38,34 +42,43 @@
                     <i class="fas fa-boxes"></i>
                     <span>Control de Stock</span>
                 </a>
-                <a href="workshop-edit-profile.html" class="nav-item">
-                    <i class="fas fa-user-edit"></i>
-                    <span>Editar Perfil</span>
+                <a href="workshop-mi-taller.html" class="nav-item">
+                    <i class="fas fa-store"></i>
+                    <span>Mi taller</span>
                 </a>
-                <a href="#" class="nav-item">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Cerrar Sesión</span>
+                <a href="workshop-edit-profile.html" class="nav-item active">
+                    <i class="fas fa-user-edit"></i>
+                    <span>Editar datos</span>
                 </a>
             </nav>
+
+            <!-- Item: perfil (.user-profile) -->
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <span class="user-name" id="sidebarUserName">Taller</span>
+                    <a href="login.html" class="logout-link" id="logoutLink">Cerrar sesión</a>
+                </div>
+            </div>
         </aside>
-        
-        <!-- Contenido principal -->
+
+        <!-- ========== SECCIÓN: Formulario editar perfil (.edit-profile-container · workshop-edit-profile-styles.css) ========== -->
         <main class="main-content">
+            <!-- Item: título página (.top-bar) -->
             <header class="top-bar">
                 <div class="page-title">
                     <h1>Editar Perfil del Taller</h1>
                     <p>Actualiza la información de tu taller mecánico</p>
                 </div>
-                <div class="user-actions">
-                    <button class="btn btn-icon">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge">3</span>
-                    </button>
-                </div>
             </header>
-            
+
+            <!-- Item: formulario editable (.edit-profile-container) -->
             <div class="edit-profile-container">
-                <!----------------------- Sección de foto de portada y logo ------------------->
+                <!-- Item: enlace atrás (.back-mi-taller) -->
+                <a href="workshop-mi-taller.html" class="back-mi-taller"><i class="fas fa-arrow-left"></i> Volver a Mi taller</a>
+                <!-- Item: portada y logo (.profile-header · .cover-photo · .profile-avatar) -->
                 <div class="profile-header">
                     <div class="cover-photo">
                         <img src="" alt="Portada del taller" id="coverPreview">
@@ -88,7 +101,7 @@
                     </div>
                 </div>
                 
-                <!-------------- Formulario de edición ---------------->
+                <!-- Item: campos editable (#editProfileForm · .form-section …) -->
                 <form id="editProfileForm" class="edit-form">
                     <div class="form-section">
                         <h2>Información Básica</h2>
@@ -182,6 +195,7 @@
                                 <i class="fas fa-plus"></i> Agregar horario
                             </button>
                         </div>
+                        <p class="form-text text-muted schedule-help">Indicá el rango de días (por ejemplo Lunes a Viernes). Podés usar una sola franja continua o marcar <strong>cierre al mediodía</strong> y cargar la segunda franja por la tarde (siesta).</p>
                         
                         <div class="schedule-container" id="scheduleContainer">
                             <!-- Horarios se agregarán dinámicamente -->
@@ -190,16 +204,12 @@
                     </div>
                     
                     <div class="form-section">
-                        <h2>Servicios Ofrecidos</h2>
-                        <div class="services-grid" id="servicesContainer">
-                            <!-- Servicios se agregarán dinámicamente -->
-                            <!-- Los servicios se agregarán dinámicamente -->
-                            
-                            <div class="add-service-card" id="addServiceBtn">
-                                <i class="fas fa-plus"></i>
-                                <span>Agregar servicio</span>
-                            </div>
-                        </div>
+                        <h2>Servicios ofrecidos</h2>
+                        <p class="form-text text-muted service-tags-hint">Tocá una etiqueta para marcarla; <strong>volvé a tocarla para quitarla</strong>. Podés elegir varias a la vez.</p>
+                        <div class="service-tags-picker" id="serviceTagsPicker" aria-label="Etiquetas de servicios"></div>
+                        <p class="service-tags-toolbar">
+                            <button type="button" class="btn-clear-service-tags" id="clearAllServiceTags">Quitar todas las etiquetas</button>
+                        </p>
                     </div>
                     
                     <div class="form-section">
@@ -216,7 +226,7 @@
                     </div>
                     
                     <div class="form-actions">
-                        <button type="button" class="btn btn-outline">Cancelar</button>
+                        <button type="button" class="btn btn-outline" id="editProfileCancelar">Cancelar</button>
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-save"></i> Guardar Cambios
                         </button>
@@ -226,46 +236,7 @@
         </main>
     </div>
 
-    <!----------------- agregar servicio ------------------->
-    <div class="modal" id="addServiceModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Agregar Servicio</h3>
-                <button type="button" class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="serviceName">Nombre del Servicio</label>
-                    <input type="text" id="serviceName" class="form-control" placeholder="Ej: Cambio de Aceite">
-                </div>
-                <div class="form-group">
-                    <label for="serviceIcon">Ícono (opcional)</label>
-                    <div class="icon-selector">
-                        <div class="icon-option active" data-icon="fa-tools">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <div class="icon-option" data-icon="fa-oil-can">
-                            <i class="fas fa-oil-can"></i>
-                        </div>
-                        <div class="icon-option" data-icon="fa-car">
-                            <i class="fas fa-car"></i>
-                        </div>
-                        <div class="icon-option" data-icon="fa-tire">
-                            <i class="fas fa-tire"></i>
-                        </div>
-                        <div class="icon-option" data-icon="fa-bolt">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline close-modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="confirmAddService">Agregar</button>
-            </div>
-        </div>
-    </div>
-
+    <script src="js/api.js"></script>
     <script src="js/workshop-edit-profile.js"></script>
 </body>
 </html>

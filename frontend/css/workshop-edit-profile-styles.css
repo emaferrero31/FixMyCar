@@ -1,6 +1,29 @@
-/* Estilos específicos para la edición de perfil del taller */
+/*
+ * =====================================================================
+ * ARCHIVO: css/workshop-edit-profile-styles.css
+ * HTML: workshop-edit-profile.html (+ estilos compartidos con Mi taller via clases base)
+ * Complemento: workshop-dashboard-styles.css define layout sidebar + .main-content
+ * =====================================================================
+ */
 
-/* Asegurar que el contenedor principal mantenga el estilo consistente */
+/* --- SECCIÓN: Enlace volver Mi taller (.back-mi-taller) --- */
+
+.back-mi-taller {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2980b9;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.back-mi-taller:hover {
+    text-decoration: underline;
+}
+
+/* --- SECCIÓN: Contenedor forma edición (.edit-profile-container) --- */
 .edit-profile-container {
     background-color: #fff;
     border-radius: 8px;
@@ -10,18 +33,23 @@
     border: 1px solid #e0e0e0;
 }
 
-/* Encabezado con foto de portada y logo */
+/* --- SECCIÓN: Cabecera portada y avatar (.profile-header · .cover-photo · .profile-avatar) --- */
 .profile-header {
     position: relative;
     margin-bottom: 80px;
+    padding: 0 clamp(16px, 5vw, 52px);
+    box-sizing: border-box;
 }
 
 .cover-photo {
-    height: 250px;
+    height: 276px;
+    box-sizing: border-box;
     background: #f5f7fa;
     position: relative;
     overflow: hidden;
     border-radius: 8px 8px 0 0;
+    border: 1px solid rgba(0, 0, 0, 0.42);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
 .cover-photo img {
@@ -67,7 +95,7 @@
 .profile-avatar {
     position: absolute;
     bottom: -70px;
-    left: 30px;
+    left: clamp(18px, 3.5vw, 36px);
     z-index: 2;
 }
 
@@ -118,7 +146,7 @@
     transform: scale(1.1) rotate(10deg);
 }
 
-/* Secciones del formulario */
+/* --- SECCIÓN: Bloques agrupadores del form (.form-section) --- */
 .form-section {
     padding: 25px 30px;
     border-bottom: 1px solid #e9ecef;
@@ -150,12 +178,12 @@
     gap: 10px;
 }
 
-/* Formulario */
+/* --- SECCIÓN: Formulario campos (.edit-form) --- */
 .edit-form {
     padding-bottom: 15px;
 }
 
-/* Estilos para el grupo de entrada con íconos */
+/* --- Item: Grupo entrada con ícono (.input-group) --- */
 .input-group {
     position: relative;
     display: flex;
@@ -193,7 +221,7 @@
     z-index: 1;
 }
 
-/* Estilos específicos para los íconos de redes sociales */
+/* --- Item: Íconos prefijo redes (.input-group-text + FA) --- */
 .fa-whatsapp {
     color: #25D366;
 }
@@ -216,7 +244,7 @@
     color: #E74C3C;
 }
 
-/* Texto de ayuda */
+/* --- Item: Ayudas campo (.form-text · .schedule-help …) --- */
 .form-text {
     display: block;
     margin-top: 0.25rem;
@@ -224,12 +252,12 @@
     color: #6c757d;
 }
 
-/* Ajustes para los campos de redes sociales */
+/* --- SECCIÓN: Redes — ajustes de columnas (.form-row en bloque redes) --- */
 .form-row .form-group {
     margin-bottom: 1rem;
 }
 
-/* Estilos para la sección de redes sociales */
+/* --- SECCIÓN: Redes — layout específico --- */
 #googleMapsLink {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
@@ -291,7 +319,7 @@ select.form-control {
     padding-right: 30px;
 }
 
-/* Botones */
+/* --- SECCIÓN: Botones (.btn … .profile-header) --- */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -377,7 +405,7 @@ select.form-control {
     font-size: 0.85rem;
 }
 
-/* Mensajes de ayuda */
+/* --- SECCIÓN: Textos ayuda contextual --- */
 .help-text {
     font-size: 0.8rem;
     color: var(--text-light);
@@ -385,7 +413,7 @@ select.form-control {
     display: block;
 }
 
-/* Horarios */
+/* --- SECCIÓN: Horarios (.schedule-container · filas dinámicas) --- */
 .schedule-container {
     margin-top: 25px;
 }
@@ -448,7 +476,77 @@ select.form-control {
     box-shadow: var(--shadow-md);
 }
 
-/* Servicios */
+.schedule-help {
+    margin-top: 0;
+    margin-bottom: 12px;
+    max-width: 720px;
+    line-height: 1.5;
+}
+
+.schedule-range-title {
+    margin: 0 0 12px 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.schedule-days-range {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.schedule-days-range .form-group {
+    flex: 1;
+    min-width: 140px;
+    margin-bottom: 0;
+}
+
+.schedule-tramos {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.schedule-tramo-line .schedule-time-pair {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.schedule-tramo-line .form-control[type="time"] {
+    flex: 0 0 auto;
+    min-width: 120px;
+    padding: 10px 12px;
+}
+
+.schedule-time-sep {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.schedule-split-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    cursor: pointer;
+    margin: 4px 0 0 0;
+    user-select: none;
+}
+
+.schedule-split-label input {
+    width: auto;
+    margin: 0;
+    cursor: pointer;
+}
+
+/* --- SECCIÓN: Etiquetas de servicios (.service-tags-picker · toolbar) --- */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -571,7 +669,81 @@ select.form-control {
     font-size: 0.95rem;
 }
 
-/* Galería de fotos */
+.service-tags-hint {
+    margin-bottom: 4px;
+}
+
+.service-tags-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.service-tag-btn {
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    background: #fff;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.service-tag-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.service-tag-btn.selected {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    border-color: transparent;
+    box-shadow: var(--shadow-sm);
+    padding-right: 12px;
+}
+
+.service-tag-btn.selected::after {
+    content: '\00d7';
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 1.05em;
+    font-weight: 700;
+    line-height: 1;
+    opacity: 0.95;
+}
+
+.service-tag-btn:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.service-tags-toolbar {
+    margin: 12px 0 0 0;
+}
+
+.btn-clear-service-tags {
+    font-family: inherit;
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px dashed var(--border-color);
+    background: #fafbfc;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-clear-service-tags:hover {
+    border-color: var(--danger-color, #e74c3c);
+    color: var(--danger-color, #e74c3c);
+    background: #fff5f5;
+}
+
+/* --- SECCIÓN: Galería editable (#galleryContainer · miniaturas) --- */
 .gallery-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -697,7 +869,7 @@ select.form-control {
     line-height: 1.4;
 }
 
-/* Efecto de carga para imágenes */
+/* --- Item: Carga tipo skeleton en thumbnails --- */
 .image-loading {
     position: relative;
     overflow: hidden;
@@ -711,14 +883,14 @@ select.form-control {
     100% { background-position: -200% 0; }
 }
 
-/* Efecto de arrastrar y soltar */
+/* --- Item: Zona drag & drop galería --- */
 .drag-over {
     border-color: var(--primary-color) !important;
     background-color: #fff9f9 !important;
     transform: scale(1.02);
 }
 
-/* Mejoras para móviles */
+/* --- SECCIÓN: Responsive edición perfil --- */
 @media (max-width: 768px) {
     .services-grid {
         grid-template-columns: 1fr;
@@ -740,7 +912,7 @@ select.form-control {
     }
 }
 
-/* Animaciones */
+/* --- SECCIÓN: Keyframes (.fadeIn …) --- */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -751,7 +923,7 @@ select.form-control {
     to { transform: translateX(0); opacity: 1; }
 }
 
-/* Aplicar animaciones */
+/* --- Item: Utilidad animación entrada --- */
 .form-section {
     animation: fadeIn 0.4s ease-out forwards;
 }
@@ -764,7 +936,7 @@ select.form-control {
     animation: fadeIn 0.3s ease-out forwards;
 }
 
-/* Botones de acción */
+/* --- SECCIÓN: Barra Guardar/Cancelar al pie --- */
 .form-actions {
     display: flex;
     justify-content: flex-end;
@@ -774,7 +946,7 @@ select.form-control {
     border-top: 1px solid #eee;
 }
 
-/* Modal */
+/* --- SECCIÓN: Modales (.modal … overlay) --- */
 .modal {
     display: none;
     position: fixed;
@@ -838,7 +1010,7 @@ select.form-control {
     gap: 10px;
 }
 
-/* Selector de íconos */
+/* --- SECCIÓN: Picker íconos (modal auxiliar) --- */
 .icon-selector {
     display: flex;
     gap: 10px;

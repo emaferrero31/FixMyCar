@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial del vehículo - FixMyCar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/vehicles-styles.css">
+    <link rel="stylesheet" href="css/dashboard-styles.css">
+    <style>
+        /* --- Solo vehiculo-historial.html: ficha (.historial-ficha) y timeline (.historial-list) --- */
+        .historial-ficha { background: #fff; border-radius: 10px; padding: 24px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #e9ecef; }
+        .historial-ficha h3 { margin: 0 0 16px 0; color: #2c3e50; font-size: 1.1rem; padding-bottom: 10px; border-bottom: 2px solid #4f46e5; }
+        .ficha-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px 24px; margin-bottom: 0; }
+        .ficha-item { font-size: 0.9rem; }
+        .ficha-item strong { color: #495057; display: block; margin-bottom: 2px; }
+        .ficha-item span { color: #2c3e50; }
+        .historial-list { background: #fff; border-radius: 10px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #e9ecef; }
+        .historial-list h3 { margin: 0 0 20px 0; color: #2c3e50; font-size: 1.1rem; }
+        .registro-item { padding: 16px; border-left: 4px solid #4f46e5; background: #f8fafc; border-radius: 0 8px 8px 0; margin-bottom: 12px; }
+        .registro-item .reg-fecha { font-weight: 600; color: #4f46e5; margin-bottom: 4px; }
+        .registro-item .reg-desc { color: #334155; margin-bottom: 6px; }
+        .registro-item .reg-meta { font-size: 0.85rem; color: #64748b; }
+    </style>
+</head>
+<body class="dashboard">
+    <div class="dashboard-container">
+        <!-- ========== SECCIÓN: Barra lateral cliente ========== -->
+        <aside class="sidebar" id="sidebar">
+            <!-- Item: marca -->
+            <div class="logo-container">
+                <div class="logo-circle"><i class="fas fa-car"></i></div>
+                <h1>FixMyCar</h1>
+            </div>
+            <!-- Item: menú (.sidebar-nav) -->
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item"><i class="fas fa-home"></i><span>Inicio</span></a>
+                <a href="vehicles.html" class="nav-item active"><i class="fas fa-car"></i><span>Mis Vehículos</span></a>
+                <a href="search-workshops.html" class="nav-item"><i class="fas fa-search"></i><span>Buscar Taller</span></a>
+                <a href="appointments.html" class="nav-item"><i class="fas fa-calendar-alt"></i><span>Mis Citas</span></a>
+            </nav>
+            <!-- Item: usuario sidebar -->
+            <div class="user-profile">
+                <div class="user-avatar"><i class="fas fa-user"></i></div>
+                <div class="user-info">
+                    <span class="user-name" id="sidebarUserName">Usuario</span>
+                    <a href="login.html" class="logout-link" id="logoutLink">Cerrar sesión</a>
+                </div>
+            </div>
+        </aside>
+        <!-- ========== SECCIÓN: Historial del vehículo ========== -->
+        <main class="main-content">
+            <div class="vehicles-container" style="padding: 20px 30px;">
+                <!-- Item: cabecera + enlace volver (.dashboard-header) -->
+                <div class="dashboard-header" style="margin-bottom: 20px;">
+                    <a href="vehicles.html" style="color: #4f46e5; font-size: 0.9rem; margin-bottom: 8px; display: inline-block;"><i class="fas fa-arrow-left"></i> Volver a Mis Vehículos</a>
+                    <h2 id="tituloVehiculo">Historial del vehículo</h2>
+                    <p>Ficha e historial de arreglos de este vehículo</p>
+                </div>
+                <!-- Item: datos del auto (#fichaVehiculo · .historial-ficha) -->
+                <div class="historial-ficha" id="fichaVehiculo">
+                    <h3><i class="fas fa-car"></i> Datos del vehículo</h3>
+                    <div class="historial-vehicle-photo" id="historialVehiclePhoto"></div>
+                    <div class="ficha-grid" id="fichaGrid"></div>
+                </div>
+                <!-- Item: timeline arreglos (#listaRegistros · .historial-list) -->
+                <div class="historial-list">
+                    <h3><i class="fas fa-tools"></i> Historial de arreglos</h3>
+                    <p style="color:#64748b; font-size:0.9rem; margin:0 0 16px 0;">Los arreglos se agregan cuando el taller marca el turno como finalizado.</p>
+                    <div id="listaRegistros"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/api.js"></script>
+    <script src="js/vehiculo-historial.js"></script>
+</body>
+</html>

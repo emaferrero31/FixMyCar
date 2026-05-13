@@ -1,0 +1,317 @@
+/*
+ * =====================================================================
+ * ARCHIVO: css/register.css · HTML: register.html
+ * CONTENIDO: fondo página · nav superior · tarjeta pasos · tipos cuenta
+ *   · formularios usuario/taller · pie
+ * =====================================================================
+ */
+
+/* --- SECCIÓN: Layout página (.register-page) --- */
+.register-page {
+    min-height: 100vh;
+    background: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') no-repeat center center/cover;
+    padding: 20px;
+    padding-top: 80px;
+}
+
+/* --- SECCIÓN: Barra navegación fija (.register-nav · .register-nav-logo · .register-nav-login) --- */
+.register-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 100;
+}
+
+.register-nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-color, #333);
+}
+
+.register-nav-logo i {
+    color: var(--primary-color, #e74c3c);
+    font-size: 1.6rem;
+}
+
+.register-nav-login {
+    padding: 8px 20px;
+    background-color: var(--primary-color, #e74c3c);
+    color: var(--white, #fff);
+    border-radius: var(--border-radius, 8px);
+    font-weight: 600;
+    transition: var(--transition, all 0.3s ease);
+}
+
+.register-nav-login:hover {
+    background-    color: var(--primary-hover, #c0392b);
+}
+
+/* --- SECCIÓN: Ancho contenido centrado (.register-wrapper · .register-container) --- */
+.register-wrapper {
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.register-container {
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: var(--border-radius, 8px);
+    box-shadow: var(--box-shadow, 0 0 20px rgba(0, 0, 0, 0.1));
+    padding: 40px;
+    position: relative;
+}
+
+/* --- SECCIÓN: Pasos / animación (.register-step) --- */
+.register-step {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- SECCIÓN: Cabecera de cada paso (.register-header · .logo-circle variants) --- */
+.register-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.register-header .logo-circle {
+    width: 72px;
+    height: 72px;
+    background-color: var(--primary-color, #e74c3c);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+}
+
+.register-header .logo-circle i {
+    color: var(--white, #fff);
+    font-size: 32px;
+}
+
+.register-header .logo-circle.small {
+    width: 56px;
+    height: 56px;
+}
+
+.register-header .logo-circle.small i {
+    font-size: 24px;
+}
+
+.register-header .logo-circle.taller {
+    background-color: #2c3e50;
+}
+
+.register-header h1 {
+    font-size: 1.6rem;
+    color: var(--text-color, #333);
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.register-header p {
+    font-size: 0.95rem;
+    color: var(--dark-gray, #777);
+}
+
+/* --- SECCIÓN: Elegir tipo Usuario/Taller (.register-type-cards · .type-card · .type-card-icon) --- */
+.register-type-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.type-card {
+    background: var(--light-gray, #f5f5f5);
+    border: 2px solid transparent;
+    border-radius: var(--border-radius, 8px);
+    padding: 28px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition, all 0.3s ease);
+    font-family: inherit;
+}
+
+.type-card:hover {
+    border-color: var(--primary-color, #e74c3c);
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(231, 76, 60, 0.15);
+}
+
+.type-card:focus {
+    outline: none;
+    border-color: var(--primary-color, #e74c3c);
+}
+
+.type-card-icon {
+    width: 56px;
+    height: 56px;
+    background-color: var(--primary-color, #e74c3c);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+}
+
+.type-card-icon i {
+    color: var(--white, #fff);
+    font-size: 24px;
+}
+
+.type-card-icon.taller {
+    background-color: #2c3e50;
+}
+
+.type-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+    color: var(--text-color, #333);
+}
+
+.type-card p {
+    font-size: 0.85rem;
+    color: var(--dark-gray, #777);
+    line-height: 1.4;
+}
+
+/* --- SECCIÓN: Paso formulario · volver (.register-form-step · .register-back) --- */
+.register-form-step {
+    position: relative;
+}
+
+.register-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: var(--light-gray, #f5f5f5);
+    border-radius: 50%;
+    color: var(--text-color, #333);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition, all 0.3s ease);
+}
+
+.register-back:hover {
+    background: var(--medium-gray, #ddd);
+    color: var(--primary-color, #e74c3c);
+}
+
+.register-form-step .register-header {
+    margin-top: 8px;
+    margin-bottom: 28px;
+}
+
+/* --- SECCIÓN: Campos (.register-form · .form-row · .btn-register) --- */
+.register-form .form-group {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.register-form .form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-color, #333);
+}
+
+.register-form .form-control {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--medium-gray, #ddd);
+    border-radius: var(--border-radius, 8px);
+    font-size: 1rem;
+    transition: var(--transition, all 0.3s ease);
+}
+
+.register-form .form-control:focus {
+    border-color: var(--primary-color, #e74c3c);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.btn-register {
+    width: 100%;
+    padding: 14px;
+    margin-top: 8px;
+    background-color: var(--primary-color, #e74c3c);
+    color: var(--white, #fff);
+    border: none;
+    border-radius: var(--border-radius, 8px);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition, all 0.3s ease);
+}
+
+.btn-register:hover {
+    background-color: var(--primary-hover, #c0392b);
+}
+
+.register-form-step .btn-register.taller-btn {
+    background-color: #2c3e50;
+}
+
+.register-form-step .btn-register.taller-btn:hover {
+    background-color: #1a252f;
+}
+
+/* --- SECCIÓN: Pie bajo tarjeta (.register-footer) --- */
+.register-footer {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 0.95rem;
+    color: var(--white, #fff);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.register-footer a {
+    color: var(--white, #fff);
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.register-footer a:hover {
+    opacity: 0.9;
+}
+
+/* --- SECCIÓN: Responsive (<600px) --- */
+@media (max-width: 600px) {
+    .register-type-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .register-container {
+        padding: 28px 20px;
+    }
+}

@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/taller_mecanico
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://aws-1-us-west-2.pooler.supabase.com:5432/postgres
+    username: postgres.wgreghgejcwzkxoljklx
+    password: Emanuel2002Fer..
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -12,13 +12,32 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  # Correo (SMTP). Para Gmail usar contraseña de aplicación.
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: tu-correo@gmail.com
+    password: tu-contraseña-de-aplicacion
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 server:
   port: 8080
   servlet:
     context-path: /api
+  # Refuerzo: el cuerpo JSON lo limita el Connector (ver TomcatConnectorConfig)
+  tomcat:
+    max-http-form-post-size: 40MB
+    max-swallow-size: 40MB
 
+# URL del frontend (enlace de recuperar contraseña en el correo)
 app:
-  jwt:
-    secret: your-jwt-secret-key-here
-    expiration: 86400000 # 24 horas en milisegundos
+  frontend-url: http://localhost:5500
+  mail:
+    from: noreply@fixmycar.com
+  # Talleres demo para probar el listado cliente (ver application-dev.yml; contraseña Demo1234)
+  seed-demo-talleres: false

@@ -1,0 +1,39 @@
+# Perfil "dev": usa H2 en memoria. No hace falta instalar PostgreSQL.
+# Ejecutar con: -Dspring.profiles.active=dev (o en IDE: Active profiles: dev)
+#
+# Cuando arranque, abrí en el navegador:
+#   API:     http://localhost:8080/api
+#   H2:      http://localhost:8080/h2-console
+#   JDBC URL: jdbc:h2:mem:tallermecanico   User: sa   Password: (vacío)
+# Si 8080 está ocupado, cambiá abajo a port: 8081 y usá localhost:8081
+
+server:
+  port: 8080
+  tomcat:
+    max-http-form-post-size: 40MB
+    max-swallow-size: 40MB
+
+app:
+  # Talleres de prueba para el listado del cliente (usuario/contraseña en logs al arrancar)
+  seed-demo-talleres: true
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:tallermecanico;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true

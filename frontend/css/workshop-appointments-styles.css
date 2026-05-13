@@ -1,7 +1,13 @@
-/* Workshop Appointments Styles */
+/*
+ * =====================================================================
+ * ARCHIVO: css/workshop-appointments-styles.css
+ * HTML: workshop-appointments.html
+ * Base: @import workshop-dashboard-styles.css (sidebar + layout)
+ * =====================================================================
+ */
 @import url('workshop-dashboard-styles.css');
 
-/* Estilos específicos para la gestión de turnos */
+/* --- SECCIÓN: Barra título página (.top-bar · .page-title) --- */
 .top-bar {
     display: flex;
     justify-content: space-between;
@@ -26,8 +32,10 @@
     margin: 0;
 }
 
-/* Filtros y búsqueda */
+/* --- SECCIÓN: Filtros y búsqueda (.filters-container · .search-bar · .filters-row) --- */
 .filters-container {
+    position: relative;
+    z-index: 2;
     background-color: #ffffff;
     border-radius: 8px;
     padding: 20px;
@@ -58,13 +66,38 @@
     outline: none;
     color: #2c3e50;
     font-size: 14px;
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
+}
+
+.modal-hint {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin: 0 0 16px 0;
+    line-height: 1.45;
+}
+
+.modal-hint + form .optional {
+    font-weight: 400;
+    color: #94a3b8;
 }
 
 .filters-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 16px 20px;
+    align-items: flex-end;
+}
+
+.filters-row > .btn {
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 36px;
+    padding: 8px 16px;
+    box-sizing: border-box;
 }
 
 .filter-group {
@@ -82,6 +115,8 @@
 
 .filter-select {
     padding: 8px 12px;
+    min-height: 36px;
+    box-sizing: border-box;
     border: 1px solid #e0e0e0;
     border-radius: 6px;
     font-size: 0.9rem;
@@ -97,7 +132,18 @@
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
-/* Contenedor principal de turnos */
+.badge-estado {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+.badge-estado.completada { background: #d4edda; color: #155724; }
+.badge-estado.cancelada { background: #f8d7da; color: #721c24; }
+.badge-estado.pendiente, .badge-estado.confirmada { background: #fff3cd; color: #856404; }
+.badge-estado.en-curso { background: #cce5ff; color: #004085; }
+
+/* --- SECCIÓN: Área calendario + detalle (.appointments-container) --- */
 .appointments-container {
     display: flex;
     gap: 20px;
@@ -105,12 +151,13 @@
     height: calc(100vh - 200px);
 }
 
-/* Vista de calendario */
+/* --- SECCIÓN: Vista calendario (.calendar-view · navegación · grilla semanal) --- */
 .calendar-view {
     flex: 2;
     background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    border: 1px solid #d8d8d8;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -118,16 +165,112 @@
 
 .calendar-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    border-bottom: 1px solid #ecf0f1;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    background: #fff;
+    border-bottom: 1px solid #e8e8e8;
 }
 
-.calendar-header h2 {
-    font-size: 1.2rem;
-    color: #2c3e50;
+.calendar-nav-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 12px 8px;
+    gap: 8px;
+}
+
+.calendar-nav-cluster {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.calendar-month-title {
     margin: 0;
+    flex: 1;
+    text-align: center;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.calendar-week-subtitle {
+    margin: 0;
+    padding: 0 16px 8px;
+    text-align: center;
+    font-size: 0.8125rem;
+    color: #6b6b6b;
+    font-weight: 500;
+}
+
+.calendar-toolbar-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 16px 20px;
+    padding: 8px 16px 14px;
+    border-top: 1px solid #f0f0f0;
+    background: #fafafa;
+}
+
+.calendar-link-btn {
+    border: none;
+    background: none;
+    padding: 6px 10px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #0078d4;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.calendar-link-btn:hover {
+    background: rgba(0, 120, 212, 0.08);
+    color: #006cbd;
+}
+
+.calendar-go-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.8125rem;
+    color: #444;
+}
+
+.calendar-go-date-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.calendar-go-date-label i {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.calendar-date-native {
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.8125rem;
+    font-family: inherit;
+    color: #333;
+    background: #fff;
+    cursor: pointer;
+    min-height: 32px;
+}
+
+.calendar-date-native:focus {
+    outline: none;
+    border-color: #0078d4;
+    box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.2);
 }
 
 .nav-btns {
@@ -137,22 +280,37 @@
 }
 
 .nav-btn {
-    background: none;
-    border: 1px solid #e0e0e0;
+    background: transparent;
+    border: none;
     border-radius: 4px;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    color: #7f8c8d;
-    transition: all 0.2s ease;
+    color: #1a1a1a;
+    transition: background 0.15s ease, color 0.15s ease;
 }
 
 .nav-btn:hover {
-    background-color: #f8f9fa;
-    color: #2c3e50;
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+.nav-btn-arrow {
+    font-size: 0.85rem;
+}
+
+.nav-btn-tight {
+    width: 32px;
+    height: 36px;
+    color: #555;
+    font-size: 0.8rem;
+}
+
+.nav-btn-tight:hover {
+    color: #1a1a1a;
 }
 
 .view-options {
@@ -183,17 +341,19 @@
 .week-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #ecf0f1;
-    font-weight: 600;
+    background-color: #fff;
+    border-bottom: 1px solid #e8e8e8;
     text-align: center;
-    padding: 10px 0;
+    padding: 8px 0 10px;
 }
 
 .week-day-header {
-    padding: 8px;
-    color: #7f8c8d;
-    font-size: 0.85rem;
+    padding: 4px 4px;
+    color: #888;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0.02em;
 }
 
 .calendar-grid {
@@ -201,41 +361,54 @@
     grid-template-columns: repeat(7, 1fr);
     flex: 1;
     overflow-y: auto;
+    background: #fff;
 }
 
 .calendar-day {
-    min-height: 100px;
-    border-right: 1px solid #ecf0f1;
-    border-bottom: 1px solid #ecf0f1;
-    padding: 8px;
+    min-height: 110px;
+    border-right: 1px solid #eee;
+    border-bottom: none;
+    padding: 10px 8px 12px;
     position: relative;
-    background-color: #ffffff;
+    background-color: #fff;
 }
 
-.calendar-day:not(:nth-child(7n)) {
-    border-right: 1px solid #ecf0f1;
+.calendar-day:nth-child(7n) {
+    border-right: none;
+}
+
+.calendar-day.today {
+    background-color: #f7fbff;
 }
 
 .day-header {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-    padding-bottom: 5px;
-    border-bottom: 1px dashed #ecf0f1;
+    justify-content: center;
+    margin-bottom: 8px;
+    padding-bottom: 0;
+    border-bottom: none;
 }
 
 .day-number {
-    width: 24px;
-    height: 24px;
-    line-height: 24px;
+    min-width: 28px;
+    height: 28px;
+    line-height: 28px;
     text-align: center;
-    border-radius: 50%;
-    font-size: 0.85rem;
+    border-radius: 2px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #444;
+}
+
+.calendar-day:not(.today) .day-number {
+    color: #555;
 }
 
 .day-number.today {
-    background-color: #3498db;
-    color: #ffffff;
+    background-color: #0078d4;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0, 120, 212, 0.35);
 }
 
 .day-appointments {
@@ -245,19 +418,21 @@
 }
 
 .appointment-card {
-    background-color: #f8f9fa;
-    border-radius: 6px;
-    padding: 8px;
-    border-left: 3px solid #3498db;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 8px 10px;
+    border: 1px solid #e8e8e8;
+    border-left: 3px solid #0078d4;
     cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 0.8rem;
-    line-height: 1.3;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+    font-size: 0.78rem;
+    line-height: 1.35;
 }
 
 .appointment-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border-color: #d0d0d0;
 }
 
 .appointment-time {
@@ -295,7 +470,7 @@
     letter-spacing: 0.3px;
 }
 
-/* Colores de estado */
+/* --- Item: Colores por estado de turno --- */
 .appointment-card[data-status="pending"] {
     border-left-color: #f39c12;
 }
@@ -322,7 +497,37 @@
     border-left-color: #9b59b6;
 }
 
-/* Estilos para los badges de estado */
+.appointment-card.appointment-card-selected {
+    outline: 2px solid #0078d4;
+    outline-offset: 0;
+    box-shadow: 0 2px 12px rgba(0, 120, 212, 0.18);
+    background-color: #f0f7ff;
+    border-color: #b8d4f0;
+}
+
+.detail-estado-wrap {
+    margin-bottom: 8px;
+}
+
+.detail-actions-panel {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #ecf0f1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.detail-actions-panel .btn-aceptar,
+.detail-actions-panel .btn-rechazar,
+.detail-actions-panel .btn-en-curso,
+.detail-actions-panel .btn-completar {
+    font-size: 0.82rem;
+    padding: 8px 12px;
+    min-height: 34px;
+}
+
+/* --- Item: Badges de estado en celda/calendario --- */
 .badge.pending {
     background-color: #fef5e7;
     color: #e67e22;
@@ -353,19 +558,13 @@
     color: #9b59b6;
 }
 
-/* Estilo para días fuera del mes actual */
+/* --- Item: Días muted fuera del mes visible --- */
 .calendar-day.other-month {
     background-color: #fafbfc;
     color: #bdc3c7;
 }
 
-/* Estilo para el día actual */
-.calendar-day.today .day-number {
-    background-color: #3498db;
-    color: #ffffff;
-}
-
-/* Panel de detalles del turno */
+/* --- SECCIÓN: Panel detalle turno (.appointment-detail · #detailContent) --- */
 .appointment-detail {
     width: 350px;
     background-color: #ffffff;
@@ -410,6 +609,54 @@
     font-size: 2.5rem;
     margin-bottom: 15px;
     opacity: 0.5;
+}
+
+.detail-panel-inner {
+    font-size: 0.9rem;
+    color: #2c3e50;
+}
+
+.detail-panel-inner .detail-id {
+    font-size: 0.75rem;
+    color: #95a5a6;
+    margin-bottom: 12px;
+}
+
+.detail-dl {
+    margin: 0;
+}
+
+.detail-dl dt {
+    font-size: 0.75rem;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 12px;
+    margin-bottom: 4px;
+}
+
+.detail-dl dt:first-child {
+    margin-top: 0;
+}
+
+.detail-dl dd {
+    margin: 0;
+    font-weight: 500;
+    color: #2c3e50;
+    line-height: 1.4;
+}
+
+.turnos-tabla tbody tr.turno-fila {
+    cursor: pointer;
+}
+
+.turnos-tabla tbody tr.turno-fila:hover {
+    background-color: #f0f7fd;
+}
+
+.turnos-tabla tbody tr.turno-fila.turno-fila-seleccionada {
+    background-color: #e8f4fd;
+    outline: 1px solid #aed6f1;
 }
 
 .detail-placeholder p {
@@ -471,7 +718,7 @@
     background-color: #f8f9fa;
 }
 
-/* Modal */
+/* --- SECCIÓN: Modales (.modal · formularios citas) --- */
 .modal {
     display: none;
     position: fixed;
@@ -599,12 +846,138 @@
     padding-top: 15px;
     border-top: 1px solid #ecf0f1;
 }
-    .view-toggle {
-        display: none;
-    }
-    
-    .badge {
-        font-size: 0.65rem;
-        padding: 1px 6px;
-    }
+
+/* --- SECCIÓN: Lista turnos API taller (.turnos-lista-section · #turnosLista) --- */
+.turnos-api-section {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.turnos-bloque {
+    margin-bottom: 28px;
+}
+
+.turnos-bloque:last-child {
+    margin-bottom: 0;
+}
+
+.turnos-bloque-titulo {
+    margin: 0 0 12px 0;
+    color: #2c3e50;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.turnos-bloque-titulo .badge-count {
+    background: #e8f4fd;
+    color: #2980b9;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.turnos-tabla-wrap {
+    overflow-x: auto;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+}
+
+.turnos-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.turnos-tabla th,
+.turnos-tabla td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+
+.turnos-tabla th {
+    background: #f8f9fa;
+    color: #64748b;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.turnos-tabla tbody tr:hover {
+    background: #fafbfc;
+}
+
+.turnos-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.btn-aceptar,
+.btn-rechazar,
+.btn-completar,
+.btn-en-curso {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 14px;
+    min-height: 36px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-aceptar {
+    background: #e8f8f0;
+    color: #1e8449;
+    border-color: #a9dfbf;
+}
+
+.btn-aceptar:hover {
+    background: #d4efdf;
+}
+
+.btn-rechazar {
+    background: #fdedec;
+    color: #c0392b;
+    border-color: #f5b7b1;
+}
+
+.btn-rechazar:hover {
+    background: #fadbd8;
+}
+
+.btn-completar {
+    background: #ebf5fb;
+    color: #2874a6;
+    border-color: #aed6f1;
+}
+
+.btn-completar:hover {
+    background: #d6eaf8;
+}
+
+.btn-en-curso {
+    background: #fef9e7;
+    color: #b7950b;
+    border-color: #f9e79f;
+}
+
+.btn-en-curso:hover {
+    background: #fcf3cf;
 }
