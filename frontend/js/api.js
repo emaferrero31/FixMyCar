@@ -1,6 +1,15 @@
 // FixMyCar - Configuración API y helpers de sesión
 var FixMyCar = FixMyCar || {};
-FixMyCar.API_BASE = 'http://localhost:8080/api';
+
+(function () {
+  var localBase = 'http://localhost:8080/api';
+  // Web Service Docker (Spring Boot API) en Render
+  var productionBase = 'https://fixmycar-xgkd.onrender.com/api';
+
+  var h = typeof location !== 'undefined' ? location.hostname : '';
+  var local = h === 'localhost' || h === '127.0.0.1' || h === '';
+  FixMyCar.API_BASE = local ? localBase : productionBase;
+})();
 
 FixMyCar.getUsuario = function () {
   var json = localStorage.getItem('fixmycar_usuario');

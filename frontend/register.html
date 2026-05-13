@@ -155,6 +155,7 @@
         </div>
     </div>
 
+    <script src="js/api.js"></script>
     <script>
         (function() {
             var stepChoose = document.getElementById('stepChooseType');
@@ -213,8 +214,6 @@
                 checkPasswords('formTaller', 'tallerPassword', 'tallerPasswordConfirm');
             });
 
-            var API_BASE = 'http://localhost:8080/api';
-
             document.getElementById('formUsuario').addEventListener('submit', function(e) {
                 e.preventDefault();
                 if (document.getElementById('usuarioPassword').value !== document.getElementById('usuarioPasswordConfirm').value) return;
@@ -228,7 +227,7 @@
                     username: document.getElementById('usuarioUsername').value.trim(),
                     password: document.getElementById('usuarioPassword').value
                 };
-                fetch(API_BASE + '/auth/register/cliente', {
+                fetch(FixMyCar.API_BASE + '/auth/register/cliente', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(body)
@@ -262,7 +261,7 @@
                     username: document.getElementById('tallerUsername').value.trim(),
                     password: document.getElementById('tallerPassword').value
                 };
-                fetch(API_BASE + '/auth/register/taller', {
+                fetch(FixMyCar.API_BASE + '/auth/register/taller', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(body)
